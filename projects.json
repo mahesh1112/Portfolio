@@ -1,0 +1,2199 @@
+[
+  {
+    "id": "ai-engineering",
+    "status": "Professional initiative",
+    "lanes": [
+      "SPECIFICATION & EXECUTION",
+      "VALIDATION & DELIVERY"
+    ],
+    "nodes": [
+      [
+        "Task specification",
+        "Requirements + context"
+      ],
+      [
+        "Guarded tool calls",
+        "LLMs / MCP / AI Hooks"
+      ],
+      [
+        "Code generation",
+        "Backend + frontend"
+      ],
+      [
+        "Audits & validation",
+        "Post-tool guardrails"
+      ],
+      [
+        "Delivery workflow",
+        "GitHub / CI/CD"
+      ],
+      [
+        "Engineering outcome",
+        "238 tasks supported"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Specification-driven execution connects generation, auditing, and delivery through guarded tool use.",
+    "problem": "Make recurring enterprise engineering tasks more consistent while measuring the value of AI assistance.",
+    "contribution": "Built workflows for generation, auditing, and validation; implemented specification-driven execution with pre- and post-tool guardrails.",
+    "decision": "Tool execution has checks before and after a call. This creates explicit places to constrain actions and inspect generated changes alongside the delivery pipeline.",
+    "evidence": "Reported outcomes: 1,875+ engineering hours saved across 238 tasks; 90.8% backend and 88.6% frontend accuracy.",
+    "limit": "The current case study does not specify the time-saving baseline or accuracy rubric. These figures describe the reported initiative outcomes.",
+    "next": "Document the baseline, review rubric, and accepted versus reworked outputs for each task type."
+  },
+  {
+    "id": "bug-agent",
+    "status": "Professional project",
+    "lanes": [
+      "ISSUE CONTEXT & REASONING",
+      "CHANGE & VALIDATION"
+    ],
+    "nodes": [
+      [
+        "Orchestrator",
+        "Coordinates the agents"
+      ],
+      [
+        "Jira analysis",
+        "Fetch + analyze issue"
+      ],
+      [
+        "Repo detection",
+        "Reproduce from frontend"
+      ],
+      [
+        "Knowledge base",
+        "Microservice + API maps"
+      ],
+      [
+        "Bug categorization",
+        "Frontend / backend / both"
+      ],
+      [
+        "Frontend investigation",
+        "Investigate UI behavior"
+      ],
+      [
+        "Backend infra",
+        "Investigation agent"
+      ],
+      [
+        "Frontend fix execution",
+        "Proposal / implementation"
+      ],
+      [
+        "Backend fix execution",
+        "Proposal / implementation"
+      ],
+      [
+        "PR-impact scan",
+        "Open-PR conflict gate"
+      ],
+      [
+        "Frontend validation",
+        "Validate frontend fix"
+      ],
+      [
+        "Backend validation",
+        "Validate backend fix"
+      ],
+      [
+        "Frontend quickfix",
+        "Specialist / trigger TBD"
+      ],
+      [
+        "Orchestrator raises PR",
+        "After agent validation"
+      ],
+      [
+        "Developer validation",
+        "Pull bug branch + test"
+      ],
+      [
+        "Agent reiteration",
+        "Use developer feedback"
+      ],
+      [
+        "Self-healing retrospective",
+        "Log first-iteration mistakes"
+      ],
+      [
+        "Merge",
+        "After developer approval"
+      ]
+    ],
+    "edges": [
+      {
+        "from": 0,
+        "to": 1,
+        "path": "M 212 69 H 245"
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "path": "M 452 69 H 485"
+      },
+      {
+        "from": 3,
+        "to": 2,
+        "path": "M 592 172 V 109",
+        "kind": "context",
+        "label": "API mapping",
+        "label_x": 605,
+        "label_y": 145
+      },
+      {
+        "from": 2,
+        "to": 4,
+        "path": "M 492 89 H 470 V 205 H 459"
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "path": "M 252 205 H 112 V 301",
+        "label": "Frontend or both",
+        "label_x": 20,
+        "label_y": 258
+      },
+      {
+        "from": 4,
+        "to": 6,
+        "path": "M 452 225 H 472 V 277 H 592 V 301",
+        "label": "Backend or both",
+        "label_x": 494,
+        "label_y": 258
+      },
+      {
+        "from": 5,
+        "to": 7,
+        "path": "M 112 374 V 437"
+      },
+      {
+        "from": 6,
+        "to": 8,
+        "path": "M 592 374 V 437"
+      },
+      {
+        "from": 7,
+        "to": 9,
+        "path": "M 212 466 H 245",
+        "label": "Proposal",
+        "label_x": 213,
+        "label_y": 454
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "path": "M 492 466 H 459",
+        "label": "Proposal",
+        "label_x": 455,
+        "label_y": 454
+      },
+      {
+        "from": 9,
+        "to": 7,
+        "path": "M 252 492 H 219",
+        "kind": "gate",
+        "label": "Green signal",
+        "label_x": 175,
+        "label_y": 529
+      },
+      {
+        "from": 9,
+        "to": 8,
+        "path": "M 452 492 H 485",
+        "kind": "gate",
+        "label": "Green signal",
+        "label_x": 455,
+        "label_y": 529
+      },
+      {
+        "from": 7,
+        "to": 10,
+        "path": "M 112 510 V 573"
+      },
+      {
+        "from": 8,
+        "to": 11,
+        "path": "M 592 510 V 573"
+      },
+      {
+        "from": 10,
+        "to": 13,
+        "path": "M 112 646 V 749 H 245"
+      },
+      {
+        "from": 11,
+        "to": 13,
+        "path": "M 592 646 V 749 H 459"
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "path": "M 352 782 V 845"
+      },
+      {
+        "from": 14,
+        "to": 17,
+        "path": "M 252 885 H 219",
+        "label": "Fixed",
+        "label_x": 218,
+        "label_y": 873
+      },
+      {
+        "from": 14,
+        "to": 15,
+        "path": "M 452 885 H 485",
+        "label": "Needs changes",
+        "label_x": 454,
+        "label_y": 873
+      },
+      {
+        "from": 15,
+        "to": 4,
+        "path": "M 692 885 H 730 V 264 H 352 V 245",
+        "kind": "feedback",
+        "label": "Additional developer input",
+        "label_x": 466,
+        "label_y": 281
+      },
+      {
+        "from": 15,
+        "to": 16,
+        "path": "M 592 918 V 981",
+        "kind": "feedback",
+        "label": "After reiteration",
+        "label_x": 600,
+        "label_y": 950
+      },
+      {
+        "from": 16,
+        "to": 0,
+        "path": "M 492 1021 H 4 V 118 H 112 V 109",
+        "kind": "feedback",
+        "label": "Lessons inform future iterations",
+        "label_x": 22,
+        "label_y": 1058
+      }
+    ],
+    "caption": "The orchestrator coordinates 13 agent roles across 22+ repositories. KB-assisted reproduction identifies the affected service, categorization selects the frontend/backend paths, and PR-impact analysis gates implementation. Developer review controls merge and feeds reiteration and retrospective learning.",
+    "problem": "Resolve frontend-reported bugs across a microservice architecture spanning more than 22 repositories. More than 90% of issues arrive through the frontend, even when the underlying fault belongs to a backend service.",
+    "contribution": "Implemented an orchestrated bug-resolution workflow with Jira analysis, KB-assisted repo detection, bug categorization, frontend and backend investigation, fix proposals, PR-impact analysis, implementation, validation, and developer-driven reiteration.",
+    "decision": "Reproduce the frontend symptom before choosing a repository. Use exact microservice-to-API mappings from the KB to find the responsible service. Categorize the fault as frontend-only, backend-only, or both, and invoke the applicable agents. Generate a proposal first, check open PRs for impact, and implement only after the green signal.",
+    "evidence": "Reported evaluation: 84% success across 42 defects and 207+ engineering hours saved.",
+    "limit": "The agent validates changes and raises a PR; the developer pulls the bug branch, verifies the fix, and controls merge. Unresolved issues return with developer feedback. After reiteration, the retrospective logs first-iteration mistakes to guide improvement. The frontend quickfix invocation trigger and blocked PR-impact handling are not yet specified.",
+    "next": "Add an anonymized bug trace showing the reproduction, KB-based service mapping, selected route, impact-scan result, validation, and any developer-feedback iteration.",
+    "positions": [
+      [
+        12,
+        36
+      ],
+      [
+        252,
+        36
+      ],
+      [
+        492,
+        36
+      ],
+      [
+        492,
+        172
+      ],
+      [
+        252,
+        172
+      ],
+      [
+        12,
+        308
+      ],
+      [
+        492,
+        308
+      ],
+      [
+        12,
+        444
+      ],
+      [
+        492,
+        444
+      ],
+      [
+        252,
+        444
+      ],
+      [
+        12,
+        580
+      ],
+      [
+        492,
+        580
+      ],
+      [
+        252,
+        580
+      ],
+      [
+        252,
+        716
+      ],
+      [
+        252,
+        852
+      ],
+      [
+        492,
+        852
+      ],
+      [
+        492,
+        988
+      ],
+      [
+        12,
+        852
+      ]
+    ],
+    "viewbox": "0 0 752 1080",
+    "node_width": 200,
+    "lane_labels": [
+      [
+        12,
+        18,
+        "ORCHESTRATION & REPRODUCTION"
+      ],
+      [
+        12,
+        290,
+        "INVESTIGATION / ROUTE DEPENDS ON CATEGORY"
+      ],
+      [
+        12,
+        426,
+        "PROPOSE / IMPACT GATE / IMPLEMENT"
+      ],
+      [
+        12,
+        562,
+        "VALIDATION & AVAILABLE SPECIALIST"
+      ],
+      [
+        12,
+        698,
+        "PULL REQUEST & DEVELOPER REVIEW"
+      ],
+      [
+        12,
+        970,
+        "AFTER REITERATION"
+      ]
+    ],
+    "steps": [
+      "The orchestrator coordinates the specialist agents and owns the final PR handoff. The system works across a microservice architecture with more than 22 repositories.",
+      "The Jira analysis agent fetches and analyzes the issue. More than 90% of bugs are reported through the frontend, so the workflow starts with the user-visible symptom.",
+      "The repo detection agent reproduces the bug from the frontend and consults the knowledge base to locate the affected microservice and repository. If the API is not failing, it identifies the frontend as the issue or at least the relevant repository.",
+      "The knowledge base maps each microservice to its APIs. It supplies routing context to repo detection; it is a supporting knowledge source, not a sub-agent.",
+      "The bug categorization agent determines whether the issue is frontend-only, backend-only, or spans both. Only the relevant investigation and fix paths are invoked.",
+      "The frontend investigation agent investigates the UI-side behavior when the issue is frontend-only or affects both layers.",
+      "The backend infra investigation agent investigates the backend side when the issue is backend-only or spans both layers.",
+      "The frontend fix execution agent first generates a fix proposal. After a green signal from PR-impact analysis, it updates the proposed fix if needed or implements the code. It does not bypass the impact gate.",
+      "The backend fix execution agent first generates a fix proposal. After PR-impact analysis gives a green signal, it updates the fix if needed or implements the code.",
+      "The PR-impact scan agent checks whether any open PR could affect the proposed fix. Fix execution proceeds only after a green signal. The exact handling of a blocked scan is not specified here.",
+      "The frontend validation agent validates the frontend implementation before the orchestrator raises the PR.",
+      "The backend validation agent validates the backend implementation before the orchestrator raises the PR.",
+      "The frontend quickfix agent is part of the agent roster. Its invocation trigger and position in the workflow have not yet been specified, so it is shown as an available specialist without a presumed execution path.",
+      "After the applicable validation agents validate the fix, the orchestrator raises the pull request for developer review.",
+      "The developer pulls the bug branch and validates the fix. If it resolves the issue, the developer merges it. Otherwise, additional developer input is returned to the agent for another iteration.",
+      "When developer validation finds the issue unresolved, the agent reiterates the bug with the additional developer inputs, revisiting the relevant investigation, proposal, PR-impact, implementation, and validation stages.",
+      "After reiteration, the self-healing retrospective agent logs mistakes from the first iteration and uses those recorded lessons to help improve future agent behavior.",
+      "Merge happens after developer validation confirms that the bug is fixed. The agent raises the PR; developer approval controls the merge."
+    ],
+    "summary": "An orchestrator coordinates 13 agent roles to resolve Jira bugs across 22+ repositories. Frontend reproduction and a microservice/API knowledge base identify the affected service, followed by targeted investigation, gated fixes, validation, and developer review.",
+    "subtitle": "From frontend symptom to the right microservice, validated fix, and developer-reviewed PR.",
+    "scenarios": [
+      {
+        "id": "frontend",
+        "label": "Frontend only / approved",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            7
+          ],
+          [
+            10
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      {
+        "id": "frontend-retry",
+        "label": "Frontend only / developer feedback",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            7
+          ],
+          [
+            10
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            7
+          ],
+          [
+            10
+          ],
+          [
+            13
+          ],
+          [
+            16
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      {
+        "id": "backend",
+        "label": "Backend only / approved",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      {
+        "id": "backend-retry",
+        "label": "Backend only / developer feedback",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            16
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      {
+        "id": "both",
+        "label": "Frontend + backend / approved",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      {
+        "id": "both-retry",
+        "label": "Frontend + backend / developer feedback",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15
+          ],
+          [
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            9
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13
+          ],
+          [
+            16
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "learnwave-ai",
+    "status": "Professional project",
+    "lanes": [
+      "CONTENT INGESTION",
+      "PERSONALIZED RETRIEVAL"
+    ],
+    "nodes": [
+      [
+        "Admin upload",
+        "Source documents"
+      ],
+      [
+        "Document parser",
+        "Extract + heading chunks"
+      ],
+      [
+        "Vision models",
+        "Describe embedded images"
+      ],
+      [
+        "Embedding generation",
+        "Content + metadata"
+      ],
+      [
+        "Vector database",
+        "DB / indexed chunks"
+      ],
+      [
+        "Learner query",
+        "I want to learn AI"
+      ],
+      [
+        "Learner current state",
+        "DB / metadata + skill set"
+      ],
+      [
+        "Skills graph",
+        "DB / skills context"
+      ],
+      [
+        "JEV decision model",
+        "Expand / refine query"
+      ],
+      [
+        "RAG retrieval",
+        "Relevant source documents"
+      ],
+      [
+        "Prompt package",
+        "Context for a small course"
+      ],
+      [
+        "Frontend templates",
+        "Predefined UI layouts"
+      ],
+      [
+        "LLM course assembly",
+        "Choose template + fill data"
+      ],
+      [
+        "Personalized course",
+        "Show course to learner"
+      ],
+      [
+        "Course completion",
+        "Update learner state"
+      ]
+    ],
+    "edges": [
+      {
+        "from": 0,
+        "to": 1,
+        "path": "M 212 69 H 245"
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "path": "M 452 69 H 485"
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "path": "M 592 102 V 165"
+      },
+      {
+        "from": 1,
+        "to": 3,
+        "path": "M 352 102 V 145 H 520 V 165",
+        "label": "Heading-based chunks",
+        "label_x": 254,
+        "label_y": 130
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "path": "M 492 205 H 459"
+      },
+      {
+        "from": 5,
+        "to": 8,
+        "path": "M 212 341 H 352 V 437"
+      },
+      {
+        "from": 6,
+        "to": 8,
+        "path": "M 212 477 H 245",
+        "kind": "context"
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "path": "M 492 477 H 459",
+        "kind": "context"
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "path": "M 352 510 V 573"
+      },
+      {
+        "from": 4,
+        "to": 9,
+        "path": "M 452 225 H 474 V 613 H 459",
+        "kind": "context",
+        "label": "Indexed content",
+        "label_x": 479,
+        "label_y": 550
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "path": "M 352 646 V 709"
+      },
+      {
+        "from": 8,
+        "to": 10,
+        "path": "M 452 490 H 462 V 690 H 400 V 709",
+        "kind": "context",
+        "label": "Refined query",
+        "label_x": 469,
+        "label_y": 678
+      },
+      {
+        "from": 6,
+        "to": 10,
+        "path": "M 112 510 V 749 H 245",
+        "kind": "context",
+        "label": "Learner context",
+        "label_x": 119,
+        "label_y": 690
+      },
+      {
+        "from": 10,
+        "to": 12,
+        "path": "M 352 782 V 845"
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "path": "M 592 782 V 817 H 440 V 845",
+        "kind": "context",
+        "label": "Select + populate",
+        "label_x": 485,
+        "label_y": 811
+      },
+      {
+        "from": 12,
+        "to": 13,
+        "path": "M 252 885 H 219"
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "path": "M 112 918 V 981"
+      },
+      {
+        "from": 14,
+        "to": 6,
+        "path": "M 12 1021 H 4 V 540 H 55 V 517",
+        "kind": "feedback",
+        "label": "Write updated state",
+        "label_x": 18,
+        "label_y": 1060
+      }
+    ],
+    "caption": "Admin documents are parsed by heading, with image descriptions, alt text, and source references incorporated before embedding. Learner state and skills context support JEV-based query refinement; RAG supplies relevant material for a prompt package. The LLM selects and populates a predefined template, and course completion updates learner state.",
+    "problem": "Create small personalized courses from source documents while accounting for a learner's metadata, existing skills, and evolving learning state.",
+    "contribution": "Built the learning pipeline spanning admin document ingestion, heading-based chunking, vision-based image descriptions, embeddings and metadata storage, JEV-based query refinement, RAG, prompt packaging, and template-based course assembly.",
+    "decision": "Use three distinct data stores: learner current state, vector database, and skills graph. Replace extracted images with vision-generated descriptions plus alt text and reference location before embedding. Refine queries using JEV and learner context before retrieval. Give the LLM predefined frontend templates to choose and populate.",
+    "evidence": "The described implementation turns uploaded source documents into a small personalized course, then updates learner state after completion. The architecture includes both admin ingestion and the learner delivery loop.",
+    "limit": "Course completion updates learner current state. The provided implementation details do not specify the skills-graph traversal, JEV internals, or measured course-quality results.",
+    "next": "Add an anonymized example showing a document heading and image, the resulting enriched chunk, a learner's original and refined query, the chosen course template, and the learner-state update after completion.",
+    "title": "Learnware AI",
+    "subtitle": "From source documents to a personalized course, with a learner-state feedback loop.",
+    "summary": "A personalized learning system with three data stores: learner current state, a vector database, and a skills graph. Heading-based document chunks and vision-generated image descriptions feed retrieval; JEV refines learner queries before an LLM assembles a course using predefined frontend templates.",
+    "positions": [
+      [
+        12,
+        36
+      ],
+      [
+        252,
+        36
+      ],
+      [
+        492,
+        36
+      ],
+      [
+        492,
+        172
+      ],
+      [
+        252,
+        172
+      ],
+      [
+        12,
+        308
+      ],
+      [
+        12,
+        444
+      ],
+      [
+        492,
+        444
+      ],
+      [
+        252,
+        444
+      ],
+      [
+        252,
+        580
+      ],
+      [
+        252,
+        716
+      ],
+      [
+        492,
+        716
+      ],
+      [
+        252,
+        852
+      ],
+      [
+        12,
+        852
+      ],
+      [
+        12,
+        988
+      ]
+    ],
+    "stores": [
+      4,
+      6,
+      7
+    ],
+    "viewbox": "0 0 752 1080",
+    "node_width": 200,
+    "lane_labels": [
+      [
+        12,
+        18,
+        "ADMIN INGESTION / DOCUMENTS WITH IMAGES"
+      ],
+      [
+        12,
+        290,
+        "LEARNER REQUEST"
+      ],
+      [
+        12,
+        426,
+        "LEARNER CONTEXT & QUERY REFINEMENT"
+      ],
+      [
+        12,
+        562,
+        "RETRIEVAL"
+      ],
+      [
+        12,
+        698,
+        "PROMPT PACKAGE & TEMPLATE LIBRARY"
+      ],
+      [
+        12,
+        834,
+        "COURSE ASSEMBLY & PRESENTATION"
+      ],
+      [
+        12,
+        970,
+        "COMPLETION FEEDBACK"
+      ]
+    ],
+    "timeline": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ],
+      [
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8
+      ],
+      [
+        9
+      ],
+      [
+        10
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        13
+      ],
+      [
+        14
+      ],
+      [
+        6
+      ]
+    ],
+    "steps": [
+      "An admin uploads the source documents that supply the learning content.",
+      "The document parser extracts content and creates chunks based on document headings, retaining the section-based organization.",
+      "Vision models generate descriptions of images. Each description replaces the image in the extracted content, together with its alt text and reference location. This walkthrough illustrates a source document containing images.",
+      "The system generates embeddings for the prepared content, including the textual descriptions that stand in for images, and associates metadata with the chunks.",
+      "The vector database stores embeddings and their metadata. RAG later retrieves relevant source content from this indexed material.",
+      "The learner submits a learning request, such as: I want to learn AI.",
+      "The learner-current-state database stores the metadata and current skill set used for personalization. JEV uses this learner context when refining the query. After course completion, this same store is updated for future requests.",
+      "The skills graph is the third data store alongside learner current state and the vector database. It represents skills context in the learning architecture; the specific graph traversal logic has not been described.",
+      "The JEV decision model expands or refines the learning query based on learner metadata and the current skill set before retrieval.",
+      "RAG uses the refined query to extract relevant documents from the vector database.",
+      "The system creates a prompt package containing the information needed for an LLM to build a small personalized course, including the learning request, learner context, and retrieved content.",
+      "Predefined frontend templates provide the available presentation layouts. The LLM chooses an appropriate template and feeds course data into it.",
+      "The LLM uses the prompt package to assemble the personalized course by selecting an appropriate predefined template and populating it with data.",
+      "The completed course is presented to the learner using the selected frontend template.",
+      "After the learner completes the course, the system updates the learner-current-state database. The updated state informs personalization when the learner returns with another request."
+    ],
+    "tags": [
+      "RAG",
+      "JEV decision model",
+      "Vision models",
+      "Embeddings",
+      "Skills graph",
+      "Prompt packaging"
+    ]
+  },
+  {
+    "id": "hireflow",
+    "status": "Public project",
+    "lanes": [
+      "RESUME INGESTION",
+      "MATCHING & ANALYSIS"
+    ],
+    "nodes": [
+      [
+        "Recruiter UI",
+        "Next.js / NextAuth"
+      ],
+      [
+        "Backend API",
+        "FastAPI / JWT / tasks"
+      ],
+      [
+        "Uploaded files",
+        "Local /tmp storage"
+      ],
+      [
+        "PostgreSQL",
+        "DB / application records"
+      ],
+      [
+        "Text extraction",
+        "pdfplumber / python-docx"
+      ],
+      [
+        "Resume parsing",
+        "Gemini / structured JSON"
+      ],
+      [
+        "Resume embeddings",
+        "3 x 384-d / MiniLM"
+      ],
+      [
+        "Pinecone index",
+        "DB / resume vectors"
+      ],
+      [
+        "Job description",
+        "Gemini / requirements"
+      ],
+      [
+        "JD embeddings",
+        "2 x 384-d / on demand"
+      ],
+      [
+        "Dual-vector search",
+        "50% profile + 50% skills"
+      ],
+      [
+        "Load candidate profiles",
+        "Parsed JSON from SQL"
+      ],
+      [
+        "Knockout checks",
+        "6 deterministic rules"
+      ],
+      [
+        "Candidate scoring",
+        "Gemini / 4 dimensions"
+      ],
+      [
+        "Fit score + ranking",
+        "40 / 25 / 20 / 15 weights"
+      ],
+      [
+        "Persist screening results",
+        "Scores + reasons + ranks"
+      ],
+      [
+        "Ranked shortlist",
+        "Review / shortlist / CSV"
+      ],
+      [
+        "Knockout failed",
+        "Store reasons / rank = 0"
+      ],
+      [
+        "Search fallback",
+        "SQL / recent resumes"
+      ],
+      [
+        "Scoring fallback",
+        "Deterministic formulas"
+      ]
+    ],
+    "edges": [
+      {
+        "from": 0,
+        "to": 1,
+        "path": "M 212 69 H 245"
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "path": "M 452 69 H 485"
+      },
+      {
+        "from": 1,
+        "to": 4,
+        "path": "M 252 89 H 230 V 145 H 112 V 165"
+      },
+      {
+        "from": 2,
+        "to": 4,
+        "path": "M 592 102 V 130 H 112 V 165",
+        "kind": "context"
+      },
+      {
+        "from": 1,
+        "to": 3,
+        "path": "M 452 89 H 470 V 145 H 592 V 165",
+        "kind": "context"
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "path": "M 212 205 H 245"
+      },
+      {
+        "from": 5,
+        "to": 3,
+        "path": "M 452 205 H 485",
+        "kind": "context"
+      },
+      {
+        "from": 5,
+        "to": 6,
+        "path": "M 252 225 H 230 V 280 H 112 V 301"
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "path": "M 212 341 H 245"
+      },
+      {
+        "from": 1,
+        "to": 8,
+        "path": "M 352 102 V 118 H 4 V 477 H 5",
+        "label": "Create JD",
+        "label_x": 15,
+        "label_y": 410
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "path": "M 212 477 H 245"
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "path": "M 352 510 V 573"
+      },
+      {
+        "from": 7,
+        "to": 10,
+        "path": "M 452 341 H 466 V 613 H 459",
+        "kind": "context",
+        "label": "Resume index",
+        "label_x": 475,
+        "label_y": 550
+      },
+      {
+        "from": 10,
+        "to": 11,
+        "path": "M 352 646 V 709"
+      },
+      {
+        "from": 10,
+        "to": 18,
+        "path": "M 452 613 H 485",
+        "kind": "feedback",
+        "label": "Unavailable",
+        "label_x": 455,
+        "label_y": 665
+      },
+      {
+        "from": 18,
+        "to": 11,
+        "path": "M 592 646 V 749 H 459"
+      },
+      {
+        "from": 3,
+        "to": 11,
+        "path": "M 692 205 H 710 V 749 H 459",
+        "kind": "context"
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "path": "M 352 782 V 845"
+      },
+      {
+        "from": 12,
+        "to": 13,
+        "path": "M 252 885 H 112 V 981",
+        "label": "Pass",
+        "label_x": 125,
+        "label_y": 950
+      },
+      {
+        "from": 12,
+        "to": 17,
+        "path": "M 452 885 H 485",
+        "label": "Fail",
+        "label_x": 455,
+        "label_y": 873
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "path": "M 112 1054 V 1117"
+      },
+      {
+        "from": 13,
+        "to": 19,
+        "path": "M 212 1021 H 485",
+        "kind": "feedback",
+        "label": "Gemini unavailable",
+        "label_x": 269,
+        "label_y": 1009
+      },
+      {
+        "from": 19,
+        "to": 14,
+        "path": "M 592 1054 V 1090 H 112 V 1117"
+      },
+      {
+        "from": 17,
+        "to": 15,
+        "path": "M 692 885 H 730 V 1090 H 352 V 1117"
+      },
+      {
+        "from": 14,
+        "to": 15,
+        "path": "M 212 1157 H 245"
+      },
+      {
+        "from": 15,
+        "to": 3,
+        "path": "M 452 1157 H 740 V 205 H 699",
+        "kind": "context"
+      },
+      {
+        "from": 15,
+        "to": 16,
+        "path": "M 352 1190 V 1253"
+      }
+    ],
+    "caption": "Resume ingestion extracts text, parses structured profiles, and indexes three local MiniLM embeddings per resume. Screening parses a JD, blends full-profile and skills searches, loads profiles from PostgreSQL, applies six knockout rules, and scores eligible candidates. Explicit branches cover knockout failures and degraded search/scoring before persisted results reach the recruiter.",
+    "problem": "Screen a pool of resumes against a structured job description while combining semantic relevance, explicit eligibility rules, and contextual scoring with recruiter-readable explanations.",
+    "contribution": "Project scope covers a JWT-protected Next.js/FastAPI application, asynchronous PDF/DOCX ingestion, Gemini-based resume and JD parsing, local multi-view embeddings, Pinecone retrieval, deterministic knockout rules, scoring fallbacks, and persisted recruiter results.",
+    "decision": "Separate resume ingestion from screening. Index three semantic views per resume, generate JD query vectors on demand, blend two semantic searches equally, and hydrate profiles from PostgreSQL. Apply hard eligibility rules before the more expensive Gemini scoring stage, then rank passed candidates by weighted fit score.",
+    "evidence": "The supplied Technical Architecture & Flow Documentation (version 1.0, February 2026) describes the components, processing sequence, formulas, fallback behavior, async concurrency, progress polling, and CSV export. No measured ranking-accuracy or production-scale benchmark is provided.",
+    "limit": "The document identifies shared Pinecone namespaces, post-retrieval filtering, ephemeral /tmp file storage, absent skill normalization/ontology and keyword-vector retrieval, and no recruiter-feedback learning loop. Redis is provisioned but not integrated. Tagging, namespace isolation, persistent object storage, and caching are proposed improvements, not completed capabilities.",
+    "next": "Evaluate retrieval and ranking against a labeled candidate set, test each knockout and unavailable-service branch, and address durable file storage and tenant isolation before presenting the design as production-ready.",
+    "title": "HireFlow",
+    "subtitle": "Resume ingestion, dual-vector retrieval, deterministic rules, and explainable candidate ranking.",
+    "summary": "A Next.js and FastAPI screening application that parses resumes and job descriptions with Gemini, indexes three 384-dimensional resume vectors in Pinecone, and combines semantic retrieval with six knockout rules and weighted candidate scoring. PostgreSQL stores profiles, jobs, progress, and results.",
+    "impact": "3 resume vectors / 6 knockout rules / 4 scoring dimensions",
+    "positions": [
+      [
+        12,
+        36
+      ],
+      [
+        252,
+        36
+      ],
+      [
+        492,
+        36
+      ],
+      [
+        492,
+        172
+      ],
+      [
+        12,
+        172
+      ],
+      [
+        252,
+        172
+      ],
+      [
+        12,
+        308
+      ],
+      [
+        252,
+        308
+      ],
+      [
+        12,
+        444
+      ],
+      [
+        252,
+        444
+      ],
+      [
+        252,
+        580
+      ],
+      [
+        252,
+        716
+      ],
+      [
+        252,
+        852
+      ],
+      [
+        12,
+        988
+      ],
+      [
+        12,
+        1124
+      ],
+      [
+        252,
+        1124
+      ],
+      [
+        252,
+        1260
+      ],
+      [
+        492,
+        852
+      ],
+      [
+        492,
+        580
+      ],
+      [
+        492,
+        988
+      ]
+    ],
+    "stores": [
+      3,
+      7
+    ],
+    "node_width": 200,
+    "viewbox": "0 0 752 1360",
+    "lane_labels": [
+      [
+        12,
+        18,
+        "RECRUITER ACCESS / API / FILE STORAGE"
+      ],
+      [
+        12,
+        154,
+        "BACKGROUND RESUME PROCESSING"
+      ],
+      [
+        12,
+        290,
+        "LOCAL EMBEDDINGS / VECTOR INDEX"
+      ],
+      [
+        12,
+        426,
+        "JOB CREATION & QUERY VECTORS"
+      ],
+      [
+        12,
+        562,
+        "SEMANTIC CANDIDATE RETRIEVAL"
+      ],
+      [
+        12,
+        698,
+        "RELATIONAL PROFILE HYDRATION"
+      ],
+      [
+        12,
+        834,
+        "DETERMINISTIC ELIGIBILITY GATE"
+      ],
+      [
+        12,
+        970,
+        "PASSED CANDIDATES / SCORING FALLBACK"
+      ],
+      [
+        12,
+        1106,
+        "AGGREGATE & PERSIST"
+      ],
+      [
+        12,
+        1242,
+        "RECRUITER RESULTS"
+      ]
+    ],
+    "steps": [
+      "Recruiters use a Next.js 15 / React 19 interface to authenticate, upload resumes, create jobs, screen candidates, review results, shortlist, and export CSV. NextAuth manages the frontend session.",
+      "FastAPI validates JWT-protected requests and coordinates PostgreSQL, file handling, embeddings, Pinecone, and Gemini. Resume processing uses background tasks with up to five concurrent files per batch; candidate scoring uses up to three concurrent candidates. The frontend polls progress and can retrieve partial screening results.",
+      "The upload flow accepts PDF/DOCX files, with documented limits of 200 files per batch and 10 MB per file. Validation happens on both client and server. Files are saved under /tmp/hireflow_uploads/; this is local ephemeral storage, so persistence across container restarts is an identified gap.",
+      "PostgreSQL stores users, job_descriptions, upload_batches, resumes, and screening_results through async SQLAlchemy. Resume records hold file metadata, parsed candidate JSON, denormalized candidate fields, parse status, and Pinecone IDs. Job requirements and screening outcomes also persist here.",
+      "A background worker extracts all PDF pages using pdfplumber or DOCX paragraphs and tables using python-docx, producing one resume text string.",
+      "Gemini 2.0 Flash converts extracted resume text into structured candidate JSON: identity, skills, experience, education, certifications, and employment gaps. The documented parser retries up to three times with exponential backoff and uses safe defaults if parsing still fails.",
+      "Local sentence-transformers inference with all-MiniLM-L6-v2 generates three 384-dimensional vectors per resume: full profile, skills, and experience. These are specialized views of one resume; the current implementation does not perform text chunking.",
+      "Pinecone stores the three resume vectors with metadata, using cosine similarity. The default namespace is shared, and the document describes user_id filtering after retrieval; per-tenant namespace isolation and metadata pre-filtering remain gaps.",
+      "Gemini parses raw job-description text into structured requirements, including required skills, experience, education, and accepted locations. The parsed job is saved in PostgreSQL before screening.",
+      "At screening time, MiniLM generates two fresh 384-dimensional JD vectors: full job meaning and required skills. These serve as search queries and are not persistently indexed in Pinecone.",
+      "Two parallel semantic searches compare JD full against resume full-profile vectors and JD requirements against resume-skills vectors. Scores are combined 50%/50%. The candidate pool uses K = min(max_candidates x 3, 100), so 100 is a cap rather than a fixed count. This is dual-vector semantic search, not BM25 plus vector retrieval.",
+      "Retrieved resume IDs are hydrated from PostgreSQL to obtain the full parsed profiles required for knockout checks and candidate scoring.",
+      "Six deterministic rules check experience, mandatory skills, recent experience relevance, employment gaps, location/relocation, and education. Failure of any rule marks the candidate as knockout-failed. Only candidates passing all rules proceed to contextual scoring.",
+      "For candidates who pass the knockout gate, Gemini 2.0 Flash evaluates skills match, experience relevance, career progression, and measurable achievements. It also returns strengths, weaknesses, matched/missing skills, and a written match explanation.",
+      "The fit score combines skills 40%, experience 25%, career progression 20%, and measurable achievements 15%. Passing candidates are ordered by descending fit score and receive ranks. Score tiers are EXCELLENT (86-100), GOOD (61-85), ADEQUATE (31-60), and POOR (0-30).",
+      "Screening outcomes are persisted incrementally in PostgreSQL, including scores, tiers, ranks, explanations, and knockout failures. Passing candidates sort ahead of failed candidates. Errors for one candidate are isolated so remaining candidates can continue processing.",
+      "The frontend polls progress and fetches persisted candidate cards. Recruiters review the ranking, shortlist candidates, and export CSV. Failed-knockout candidates remain at the bottom with rank 0; shortlisting is stored but does not train a feedback model in the documented implementation.",
+      "A candidate failing any knockout rule bypasses AI scoring. Failure reasons are persisted, and the candidate is retained at the bottom of results with rank 0.",
+      "When Pinecone is unavailable, the documented degraded path queries PostgreSQL for recent resumes. It supplies a candidate pool without semantic relevance ranking, after which the normal eligibility and scoring pipeline can continue.",
+      "When Gemini scoring is unavailable, deterministic formulas derived from parsed resume fields supply the four category scores. Weighted aggregation still follows the same 40/25/20/15 fit-score formula. This fallback is separate from resume-parser retry/default handling."
+    ],
+    "scenario_label": "Explore a HireFlow pipeline",
+    "scenario_default": "full",
+    "scenario_note": "Choose ingestion, screening, a failed knockout, or an unavailable-service path. These walkthroughs illustrate the documented implementation; they do not execute screening or evaluate real candidates.",
+    "tags": [
+      "Next.js",
+      "FastAPI",
+      "Gemini",
+      "MiniLM / 384-d",
+      "Pinecone",
+      "PostgreSQL",
+      "Async workflows"
+    ],
+    "study_sections": [
+      {
+        "label": "Two different weight systems",
+        "text": "Retrieval blends full-profile and skills cosine scores 50%/50% to select a capped candidate pool. Final fit scoring is a separate calculation: skills 40%, experience 25%, career progression 20%, achievements 15%."
+      },
+      {
+        "label": "Six eligibility rules",
+        "text": "The documented rules check experience below 60% of the requirement; missing top-three mandatory recent skills; recent-skill overlap below 20%; an employment gap over 12 months; location mismatch without accepted relocation; and unmatched education-level keywords. These are implemented heuristics described by the document, not evidence of their effectiveness."
+      },
+      {
+        "label": "Architecture source",
+        "text": "Based on the supplied HireFlow Technical Architecture & Flow Documentation, version 1.0, February 2026, especially sections 3-6 and 8-11. Recommendations in sections 12 and 14 are kept separate from current behavior."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "full",
+        "label": "Complete ingestion + screening",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16
+          ]
+        ]
+      },
+      {
+        "id": "upload",
+        "label": "Resume ingestion only",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "id": "screen",
+        "label": "Screening / eligibility passed",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16
+          ]
+        ]
+      },
+      {
+        "id": "knockout",
+        "label": "Screening / knockout failed",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12
+          ],
+          [
+            17
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16
+          ]
+        ]
+      },
+      {
+        "id": "search-fallback",
+        "label": "Pinecone unavailable / SQL fallback",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            18
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16
+          ]
+        ]
+      },
+      {
+        "id": "score-fallback",
+        "label": "Gemini scoring unavailable / formulas",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            19
+          ],
+          [
+            14
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            16
+          ]
+        ]
+      }
+    ],
+    "output_node": 16
+  },
+  {
+    "id": "deeppulse",
+    "status": "Professional project",
+    "lanes": [
+      "KNOWLEDGE INGESTION",
+      "FEEDBACK GENERATION"
+    ],
+    "nodes": [
+      [
+        "Knowledge sources",
+        "Extract + prepare"
+      ],
+      [
+        "Embeddings",
+        "Knowledge representation"
+      ],
+      [
+        "PostgreSQL / pgvector",
+        "Vector storage"
+      ],
+      [
+        "Employee context",
+        "Data + objectives"
+      ],
+      [
+        "LangChain retrieval",
+        "Construct grounded context"
+      ],
+      [
+        "LLM feedback",
+        "Personalized insights"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Retrieved knowledge joins employee data and organizational objectives before feedback generation.",
+    "problem": "Generate employee feedback that reflects relevant knowledge, organizational objectives, and employee-specific data.",
+    "contribution": "Built the ingestion, embedding, retrieval, context-construction, and generation pipeline using LangChain, PostgreSQL, and pgvector.",
+    "decision": "Vector retrieval supplies relevant knowledge before generation. Keeping vectors in PostgreSQL connects retrieval with a relational storage stack.",
+    "evidence": "The described implementation connects employee context and retrieved knowledge in an end-to-end personalized-feedback workflow.",
+    "limit": "No measured feedback-quality results or comparison with a non-retrieval baseline are currently included.",
+    "next": "Assess whether generated feedback is supported by retrieved context and relevant to the stated employee objectives."
+  },
+  {
+    "id": "finetuning",
+    "status": "Research / architecture exploration",
+    "lanes": [
+      "CONFIGURATION & RUNTIME",
+      "TRAINING & ARTIFACTS"
+    ],
+    "nodes": [
+      [
+        "React configuration",
+        "Static GitHub Pages UI"
+      ],
+      [
+        "Job bridge",
+        "Proposed / authenticated"
+      ],
+      [
+        "Active Colab runtime",
+        "User starts notebook"
+      ],
+      [
+        "Validated training job",
+        "Model + dataset + settings"
+      ],
+      [
+        "LoRA / QLoRA",
+        "PyTorch / PEFT"
+      ],
+      [
+        "Training artifacts",
+        "Adapters / logs / metrics"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Target architecture: the proposed bridge connects configuration to an already-active Colab runtime.",
+    "problem": "Explore parameter-efficient model adaptation with browser-based configuration and constrained GPU compute.",
+    "contribution": "Exploration covers a React configuration interface, Python training workflow, and runtime and security architecture.",
+    "decision": "The static UI and GPU execution are separate. The authenticated bridge is a proposed component; Colab must first be started by the user.",
+    "evidence": "Architecture and workflow exploration; no completed-training benchmark or measured quality improvement is claimed here.",
+    "limit": "The diagram is a target design. Runtime availability and GPU memory remain constraints.",
+    "next": "Prove a reproducible training run, persist artifacts, and compare base-model and adapted-model quality before validating the bridge."
+  },
+  {
+    "id": "nichrome",
+    "status": "Industry project / mobile source available",
+    "lanes": [
+      "BUSINESS-CARD EXTRACTION",
+      "PRODUCT KNOWLEDGE ACCESS"
+    ],
+    "nodes": [
+      [
+        "Card capture",
+        "Mobile input"
+      ],
+      [
+        "OCR + ML",
+        "Text extraction"
+      ],
+      [
+        "Selective LLM use",
+        "Structured card fields"
+      ],
+      [
+        "Documents + videos",
+        "Product knowledge"
+      ],
+      [
+        "Search & Q&A",
+        "Relevant information"
+      ],
+      [
+        "Flutter experience",
+        "Field-team access"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Two capabilities support field teams: structured card extraction and access to product knowledge.",
+    "problem": "Help field teams capture contact information and find useful product information from documents and videos.",
+    "contribution": "Project scope combines business-card extraction, product-knowledge search and Q&A, and a mobile experience for field users.",
+    "decision": "OCR and machine learning handle extraction with selective LLM use. Product knowledge access is a separate capability; backend service boundaries are abstracted in this diagram.",
+    "evidence": "The linked public repository covers the mobile application. The broader extraction and knowledge workflow is described in the portfolio.",
+    "limit": "The mobile repository alone does not verify the full AI backend. Extraction accuracy and search-quality results are not provided.",
+    "next": "Add anonymized card input/output examples and evaluate field-level extraction accuracy and source-grounded answers."
+  },
+  {
+    "id": "face-recognition",
+    "status": "Public project",
+    "lanes": [
+      "RECOGNITION",
+      "ATTENDANCE RECORDS"
+    ],
+    "nodes": [
+      [
+        "Live camera",
+        "Face input"
+      ],
+      [
+        "Recognition pipeline",
+        "Detect + compare faces"
+      ],
+      [
+        "Identity match",
+        "Recognition result"
+      ],
+      [
+        "PyQt5 interface",
+        "Desktop experience"
+      ],
+      [
+        "Attendance record",
+        "MySQL"
+      ],
+      [
+        "Attendance tracking",
+        "Recorded identity + event"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Live face recognition connects a desktop interface with MySQL-backed attendance records.",
+    "problem": "Connect real-time face recognition with a desktop attendance-tracking workflow.",
+    "contribution": "Project scope covers face comparison and recognition, a PyQt5 desktop interface, and MySQL attendance records.",
+    "decision": "The desktop interface connects recognition results with persistent attendance records. The recognition algorithm is unspecified in the existing description.",
+    "evidence": "Reported result: 92% live recognition accuracy.",
+    "limit": "Test-set size, lighting conditions, identity distribution, and false-match rate are not documented in the current portfolio.",
+    "next": "Record the evaluation setup and report false matches and missed matches across lighting and camera conditions."
+  },
+  {
+    "id": "agentic-workflows",
+    "status": "Public automation project",
+    "lanes": [
+      "TRIGGER & EXECUTION",
+      "OUTPUT & HISTORY"
+    ],
+    "nodes": [
+      [
+        "Scheduled trigger",
+        "GitHub Actions"
+      ],
+      [
+        "Workflow definition",
+        "Versioned configuration"
+      ],
+      [
+        "Python execution",
+        "Recurring summary task"
+      ],
+      [
+        "Generated summary",
+        "AI-related content"
+      ],
+      [
+        "Versioned output",
+        "Repository history"
+      ],
+      [
+        "Recurring updates",
+        "Repeatable workflow"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "A scheduled GitHub Actions workflow runs Python summary generation and maintains versioned outputs.",
+    "problem": "Make recurring AI-related summaries repeatable through a scheduled, version-controlled workflow.",
+    "contribution": "Repository scope includes workflow definitions, Python automation, scheduled generation, and versioned outputs.",
+    "decision": "Workflow configuration and generated outputs live in version control, making changes and recurring runs easier to trace.",
+    "evidence": "The current project description establishes scheduled workflow automation; it does not establish an autonomous multi-agent system.",
+    "limit": "No run-success rate or measured time-saving result is included in the portfolio.",
+    "next": "Track failed and successful runs, review summary quality, and document behavior when a source is unavailable."
+  }
+]
