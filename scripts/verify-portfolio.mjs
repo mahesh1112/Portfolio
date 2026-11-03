@@ -67,7 +67,7 @@ try {
     if (await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 53')) break;
     await delay(100);
   }
-  check(await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 103'), 'Nine published interactive diagrams / 103 explorable stages');
+  check(await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 118'), 'Nine published interactive diagrams / 118 explorable stages');
   check(await evaluate(`!document.querySelector('.project-card.workflow-draft, .workflow-pending') && [...document.querySelectorAll('.project-open')].every(button => button.textContent.startsWith('Explore workflow'))`), 'Every project publishes its workflow');
   check(await evaluate(`!document.querySelector('.project-repo-link, .project-card a[href*="github.com"]')`), 'Project cards carry no repository links');
   check(await evaluate(`[...document.querySelectorAll('.project-card')].map(card => card.id).join() === 'ai-engineering,bug-agent,learnwave-ai,deeppulse,nichrome,hireflow,face-recognition,finetuning,agentic-workflows'`), 'Projects are ordered by impact');
@@ -185,6 +185,38 @@ try {
     await new Promise(resolve => setTimeout(resolve, 40));
     return true;
   })()`), 'HireFlow: ingestion, screening, knockout bypass, SQL search fallback, deterministic scoring fallback, and separate retrieval/fit weights');
+  check(await evaluate(`(async () => {
+    document.querySelector('#ai-engineering .project-open').click();
+    const figure = document.querySelector('.project-dialog .architecture');
+    const selector = figure.querySelector('[data-workflow-scenario]');
+    const scenarios = JSON.parse(figure.dataset.scenarios);
+    if (scenarios.length !== 5 || figure.querySelectorAll('[data-step]').length !== 21) return false;
+    for (const route of scenarios) {
+      selector.value = route.id;
+      selector.dispatchEvent(new Event('change'));
+      const visited = [];
+      for (let i = 0; i < route.groups.length; i++) {
+        figure.querySelector('[data-workflow-next]').click();
+        visited.push(...[...figure.querySelectorAll('.diagram-node[aria-pressed=true]')].map(node => Number(node.dataset.step)));
+      }
+      const before = (a, b) => visited.includes(a) && visited.includes(b) && visited.indexOf(a) < visited.indexOf(b);
+      if (visited.includes(8) && visited.includes(10) && !before(8, 10)) return false;
+      if (['full', 'test-fix'].includes(route.id) && !(before(3, 4) && before(4, 6) && before(6, 8) && before(8, 9) && before(9, 10) && before(10, 11))) return false;
+      if (['full', 'review-fix'].includes(route.id) && !(before(12, 13) && before(13, 16) && before(16, 18))) return false;
+      if (route.id === 'full' && (visited.at(-1) !== 20 || !before(18, 19))) return false;
+      if (route.id === 'clarify' && !(visited.indexOf(5) < visited.lastIndexOf(4) && visited.lastIndexOf(4) < visited.indexOf(6))) return false;
+      if (route.id === 'plan-changes' && (visited.filter(step => step === 8).length !== 2 || visited.lastIndexOf(8) > visited.indexOf(9))) return false;
+      if (route.id === 'test-fix' && visited.filter(step => step === 11).length !== 2) return false;
+      if (route.id === 'review-fix' && (visited.includes(19) || visited.lastIndexOf(9) < visited.indexOf(18) || visited.at(-1) !== 12)) return false;
+    }
+    if (![[18, 9], [11, 10], [8, 6], [5, 4]].every(([from, to]) => figure.querySelector('.diagram-edge[data-from="' + from + '"][data-to="' + to + '"][data-kind="feedback"]'))) return false;
+    selector.value = 'full'; selector.dispatchEvent(new Event('change'));
+    const text = figure.textContent;
+    if (!text.includes('.agent.md') || !text.includes('MCP') || !text.includes('Jira')) return false;
+    document.querySelector('.project-dialog').close();
+    await new Promise(resolve => setTimeout(resolve, 40));
+    return true;
+  })()`), 'AI engineering: plan approval, repo sub-agents, test-fix loop, pre-PR review gates, and review-fix loop');
   check(await evaluate(`(async () => {
     document.querySelector('#face-recognition .project-open').click();
     const figure = document.querySelector('.project-dialog .architecture');

@@ -3,65 +3,679 @@
     "id": "ai-engineering",
     "status": "Professional initiative",
     "lanes": [
-      "SPECIFICATION & EXECUTION",
-      "VALIDATION & DELIVERY"
+      "CODE GENERATION AGENT",
+      "CODE REVIEW AGENT"
     ],
     "nodes": [
       [
-        "Task specification",
-        "Requirements + context"
+        "Developer",
+        "Jira ID in Copilot chat"
       ],
       [
-        "Guarded tool calls",
-        "LLMs / MCP / AI Hooks"
+        "Agent profiles",
+        ".agent.md files"
       ],
       [
-        "Code generation",
-        "Backend + frontend"
+        "AI Hooks",
+        "Pre/post-tool guardrails"
       ],
       [
-        "Audits & validation",
-        "Post-tool guardrails"
+        "Jira via MCP",
+        "Fetch story details"
       ],
       [
-        "Delivery workflow",
-        "GitHub / CI/CD"
+        "Story analysis",
+        "Requirements + criteria"
       ],
       [
-        "Engineering outcome",
-        "238 tasks supported"
+        "Clarifying questions",
+        "Asked when unclear"
+      ],
+      [
+        "Implementation plan",
+        "Steps + approach"
+      ],
+      [
+        "Impacted areas",
+        "Flagged in the plan"
+      ],
+      [
+        "Plan approval",
+        "Developer approves"
+      ],
+      [
+        "Code generator",
+        "Routes plan steps"
+      ],
+      [
+        "Repo sub-agents",
+        "Per-architecture domains"
+      ],
+      [
+        "Unit tests",
+        "Written + run"
+      ],
+      [
+        "Test gate",
+        "All tests passing"
+      ],
+      [
+        "Frontend lint",
+        "Lint rules"
+      ],
+      [
+        "Business logic",
+        "Checked against Jira"
+      ],
+      [
+        "Coding guidelines",
+        "Instruction files"
+      ],
+      [
+        "Impact analysis",
+        "Risky areas flagged"
+      ],
+      [
+        "Review report",
+        "Findings + risks"
+      ],
+      [
+        "Developer decision",
+        "Fix findings or proceed"
+      ],
+      [
+        "Raise PR",
+        "GitHub pull request"
+      ],
+      [
+        "CI/CD pipeline",
+        "Build + deliver"
       ]
     ],
     "edges": [
-      [
-        0,
-        1
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        4,
-        5
-      ]
+      {
+        "from": 0,
+        "to": 3,
+        "path": "M 112 102 V 165",
+        "label": "Jira ID",
+        "label_x": 120,
+        "label_y": 138
+      },
+      {
+        "from": 1,
+        "to": 4,
+        "path": "M 352 102 V 165",
+        "kind": "context"
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "path": "M 212 205 H 245"
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "path": "M 452 195 H 485",
+        "label": "Unclear",
+        "label_x": 455,
+        "label_y": 186
+      },
+      {
+        "from": 5,
+        "to": 4,
+        "path": "M 492 222 H 459",
+        "kind": "feedback",
+        "label": "Answers",
+        "label_x": 455,
+        "label_y": 236
+      },
+      {
+        "from": 4,
+        "to": 6,
+        "path": "M 352 238 V 301"
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "path": "M 452 341 H 485"
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "path": "M 592 374 V 437"
+      },
+      {
+        "from": 8,
+        "to": 6,
+        "path": "M 492 477 H 352 V 381",
+        "kind": "feedback",
+        "label": "Changes requested",
+        "label_x": 362,
+        "label_y": 466
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "path": "M 592 510 V 573",
+        "label": "Approved",
+        "label_x": 600,
+        "label_y": 545
+      },
+      {
+        "from": 2,
+        "to": 9,
+        "path": "M 692 69 H 730 V 600 H 699",
+        "kind": "context",
+        "label": "Guarded tool calls",
+        "label_x": 640,
+        "label_y": 420
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "path": "M 492 613 H 459",
+        "label": "Delegate",
+        "label_x": 455,
+        "label_y": 601
+      },
+      {
+        "from": 10,
+        "to": 11,
+        "path": "M 252 603 H 219"
+      },
+      {
+        "from": 11,
+        "to": 10,
+        "path": "M 212 630 H 245",
+        "kind": "feedback",
+        "label": "Fix",
+        "label_x": 220,
+        "label_y": 643
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "path": "M 112 646 V 709",
+        "label": "Code reviewer",
+        "label_x": 120,
+        "label_y": 670
+      },
+      {
+        "from": 12,
+        "to": 13,
+        "path": "M 212 749 H 245"
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "path": "M 452 749 H 485"
+      },
+      {
+        "from": 14,
+        "to": 15,
+        "path": "M 592 782 V 845"
+      },
+      {
+        "from": 15,
+        "to": 16,
+        "path": "M 492 885 H 459"
+      },
+      {
+        "from": 16,
+        "to": 17,
+        "path": "M 252 885 H 219"
+      },
+      {
+        "from": 17,
+        "to": 18,
+        "path": "M 112 918 V 981"
+      },
+      {
+        "from": 18,
+        "to": 19,
+        "path": "M 212 1021 H 245",
+        "label": "Clean",
+        "label_x": 218,
+        "label_y": 1009
+      },
+      {
+        "from": 19,
+        "to": 20,
+        "path": "M 452 1021 H 485"
+      },
+      {
+        "from": 18,
+        "to": 9,
+        "path": "M 112 1054 V 1076 H 742 V 626 H 699",
+        "kind": "feedback",
+        "label": "Fix findings",
+        "label_x": 660,
+        "label_y": 1070
+      }
     ],
-    "caption": "Specification-driven execution connects generation, auditing, and delivery through guarded tool use.",
-    "problem": "Make recurring enterprise engineering tasks more consistent while measuring the value of AI assistance.",
-    "contribution": "Built workflows for generation, auditing, and validation; implemented specification-driven execution with pre- and post-tool guardrails.",
-    "decision": "Tool execution has checks before and after a call. This creates explicit places to constrain actions and inspect generated changes alongside the delivery pipeline.",
+    "caption": "The code generator fetches a Jira story through MCP, asks when unclear, and plans the change with impacted areas flagged. After the developer approves the plan, it delegates steps to repository-specific sub-agents and writes and runs unit tests. Before raising a PR, the developer runs the code reviewer, which gates on tests, lints frontend code, checks business logic and guidelines, and flags risky areas. AI Hooks guard tool calls throughout.",
+    "problem": "Make recurring enterprise engineering work, implementing Jira stories and reviewing the resulting code, faster and more consistent while measuring the value of AI assistance.",
+    "contribution": "Built GitHub Copilot agent profiles (.agent.md): a code generator with repository-specific sub-agents and a single-file code reviewer. Connected them to Jira through an MCP server, encoded coding guidelines as instruction files, and added AI Hooks with pre- and post-tool guardrails.",
+    "decision": "The developer approves the plan before any code is written, and the code reviewer runs as a separate agent before the PR, so it checks the generator's output against the Jira story and coding guidelines instead of the generator's own assumptions. Sub-agents follow each repository's architecture, keeping each one focused on a single area of the system.",
     "evidence": "Reported outcomes: 1,875+ engineering hours saved across 238 tasks; 90.8% backend and 88.6% frontend accuracy.",
     "limit": "The current case study does not specify the time-saving baseline or accuracy rubric. These figures describe the reported initiative outcomes.",
     "next": "Document the baseline, review rubric, and accepted versus reworked outputs for each task type.",
-    "impact": "⚡ 1,875+ engineering hours saved · 238 tasks"
+    "impact": "⚡ 1,875+ engineering hours saved · 238 tasks",
+    "subtitle": "GitHub Copilot agents that turn Jira stories into tested code and review it against business logic.",
+    "summary": "Custom GitHub Copilot agents for code generation and code review. The code generator fetches a Jira story through MCP, asks clarifying questions, and plans the change with impacted areas flagged; after developer approval it delegates to repository-specific sub-agents and writes and runs unit tests. Before the PR, the code reviewer confirms tests pass, lints frontend code, checks business logic and coding guidelines, and flags risky areas.",
+    "positions": [
+      [
+        12,
+        36
+      ],
+      [
+        252,
+        36
+      ],
+      [
+        492,
+        36
+      ],
+      [
+        12,
+        172
+      ],
+      [
+        252,
+        172
+      ],
+      [
+        492,
+        172
+      ],
+      [
+        252,
+        308
+      ],
+      [
+        492,
+        308
+      ],
+      [
+        492,
+        444
+      ],
+      [
+        492,
+        580
+      ],
+      [
+        252,
+        580
+      ],
+      [
+        12,
+        580
+      ],
+      [
+        12,
+        716
+      ],
+      [
+        252,
+        716
+      ],
+      [
+        492,
+        716
+      ],
+      [
+        492,
+        852
+      ],
+      [
+        252,
+        852
+      ],
+      [
+        12,
+        852
+      ],
+      [
+        12,
+        988
+      ],
+      [
+        252,
+        988
+      ],
+      [
+        492,
+        988
+      ]
+    ],
+    "stores": [
+      1
+    ],
+    "node_width": 200,
+    "viewbox": "0 0 752 1100",
+    "lane_labels": [
+      [
+        12,
+        18,
+        "DEVELOPER / AGENT CONFIGURATION"
+      ],
+      [
+        12,
+        154,
+        "CODE GENERATOR / UNDERSTAND THE STORY"
+      ],
+      [
+        12,
+        290,
+        "CODE GENERATOR / PLAN"
+      ],
+      [
+        12,
+        426,
+        "DEVELOPER / PLAN APPROVAL"
+      ],
+      [
+        12,
+        562,
+        "CODE GENERATOR / SUB-AGENTS BUILD + TEST"
+      ],
+      [
+        12,
+        698,
+        "CODE REVIEWER / QUALITY GATES"
+      ],
+      [
+        12,
+        834,
+        "CODE REVIEWER / STANDARDS + IMPACT"
+      ],
+      [
+        12,
+        970,
+        "DEVELOPER / PR + DELIVERY"
+      ]
+    ],
+    "steps": [
+      "The developer opens GitHub Copilot, selects the code generator agent, and enters a Jira ID. The developer approves the plan, runs the code reviewer before raising a PR, and makes the final call on every change.",
+      "Agents are defined in .agent.md profiles: role, instructions, and the tools each may call. The code generator has repository-specific sub-agent profiles; the code reviewer is a single agent file. Coding guidelines live in instruction files that the agents read.",
+      "AI Hooks run checks before and after each tool call. Pre-tool guardrails constrain what an agent may do; post-tool guardrails inspect what it changed.",
+      "An MCP server connects the agent to Jira and fetches the story: description, acceptance criteria, and related details. The agent works from the ticket rather than a hand-copied summary.",
+      "The code generator analyzes the story to extract requirements and acceptance criteria and to work out what has to change in the codebase.",
+      "When the story is ambiguous or incomplete, the agent asks the developer clarifying questions before planning, instead of guessing.",
+      "The agent writes an implementation plan: the steps, the components involved, and the approach for each change.",
+      "The plan flags the areas the change will affect, so the developer sees the blast radius before any code is written.",
+      "Implementation waits for the developer. The developer approves the plan, or requests changes and the agent revises it.",
+      "Once the plan is approved, the code generator orchestrates implementation, handing each plan step to the sub-agent responsible for that part of the repository. AI Hooks guard every tool call along the way.",
+      "Sub-agents mirror the architecture of each repository. In one repository they are the assignment, cleanup, engagement, notification, platform, and security agents, each focused on one part of that system.",
+      "The code generator writes unit tests for the change and runs them. Failing tests send it back to fix the code and run them again.",
+      "The developer then runs the code reviewer, a single agent, before raising a PR. It starts by confirming that all tests pass.",
+      "For frontend changes, the code reviewer runs the linter and reports rule violations.",
+      "The code reviewer checks the implementation against the business logic and acceptance criteria in the Jira story.",
+      "The code reviewer checks the code against the team's coding guidelines, provided as instruction files.",
+      "The code reviewer analyzes the impact of the change and flags risky areas that need closer human attention.",
+      "Findings from the test gate, lint, business-logic and guideline checks, and impact analysis are collected into one review report.",
+      "The developer reads the report. If it raises findings, the developer has the code generator fix them and runs the review again. When the report is clean, the developer proceeds.",
+      "The developer raises a GitHub pull request for the reviewed change.",
+      "The CI/CD pipeline builds and delivers the change. Across the initiative, reported outcomes are 1,875+ engineering hours saved over 238 tasks."
+    ],
+    "scenario_label": "Explore an agent path",
+    "scenario_default": "full",
+    "scenario_note": "Choose the full story-to-delivery path, a clarifying question, a plan revision, a failing-test fix, or review findings that are fixed and re-reviewed. These walkthroughs illustrate the agent design; they do not run Copilot or access Jira.",
+    "tags": [
+      "GitHub Copilot",
+      "Agent profiles",
+      "MCP",
+      "Jira",
+      "AI Hooks",
+      "Unit testing",
+      "CI/CD"
+    ],
+    "study_sections": [
+      {
+        "label": "Agent profiles as code",
+        "text": "Each agent is an .agent.md file that defines its role, instructions, and tools, the Copilot counterpart of an agent definition file. The code generator's sub-agents differ per repository because they mirror its architecture; one repository uses assignment, cleanup, engagement, notification, platform, and security agents. Profiles and guideline files are versioned with the repository, so agent behavior is reviewed and changed like any other code."
+      },
+      {
+        "label": "Two accuracy figures",
+        "text": "Reported accuracy is 90.8% for backend tasks and 88.6% for frontend tasks. The rubric that defines an accurate output is not yet documented here."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "full",
+        "label": "Jira story to PR and CI/CD",
+        "groups": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ]
+        ]
+      },
+      {
+        "id": "clarify",
+        "label": "Clarifying questions",
+        "groups": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "plan-changes",
+        "label": "Plan changes requested",
+        "groups": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            2
+          ]
+        ]
+      },
+      {
+        "id": "test-fix",
+        "label": "Failing unit test fixed",
+        "groups": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ]
+        ]
+      },
+      {
+        "id": "review-fix",
+        "label": "Review findings fixed and re-reviewed",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ]
+        ]
+      }
+    ],
+    "output_node": 20
   },
   {
     "id": "bug-agent",
