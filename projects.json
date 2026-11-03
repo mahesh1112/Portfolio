@@ -1172,6 +1172,132 @@
     ]
   },
   {
+    "id": "deeppulse",
+    "status": "Professional project",
+    "lanes": [
+      "KNOWLEDGE INGESTION",
+      "FEEDBACK GENERATION"
+    ],
+    "nodes": [
+      [
+        "Knowledge sources",
+        "Extract + prepare"
+      ],
+      [
+        "Embeddings",
+        "Knowledge representation"
+      ],
+      [
+        "PostgreSQL / pgvector",
+        "Vector storage"
+      ],
+      [
+        "Employee context",
+        "Data + objectives"
+      ],
+      [
+        "LangChain retrieval",
+        "Construct grounded context"
+      ],
+      [
+        "LLM feedback",
+        "Personalized insights"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Retrieved knowledge joins employee data and organizational objectives before feedback generation.",
+    "problem": "Generate employee feedback that reflects relevant knowledge, organizational objectives, and employee-specific data.",
+    "contribution": "Built the ingestion, embedding, retrieval, context-construction, and generation pipeline using LangChain, PostgreSQL, and pgvector.",
+    "decision": "Vector retrieval supplies relevant knowledge before generation. Keeping vectors in PostgreSQL connects retrieval with a relational storage stack.",
+    "evidence": "The described implementation connects employee context and retrieved knowledge in an end-to-end personalized-feedback workflow.",
+    "limit": "No measured feedback-quality results or comparison with a non-retrieval baseline are currently included.",
+    "next": "Assess whether generated feedback is supported by retrieved context and relevant to the stated employee objectives."
+  },
+  {
+    "id": "nichrome",
+    "status": "Industry project",
+    "lanes": [
+      "BUSINESS-CARD EXTRACTION",
+      "PRODUCT KNOWLEDGE ACCESS"
+    ],
+    "nodes": [
+      [
+        "Card capture",
+        "Mobile input"
+      ],
+      [
+        "OCR + ML",
+        "Text extraction"
+      ],
+      [
+        "Selective LLM use",
+        "Structured card fields"
+      ],
+      [
+        "Documents + videos",
+        "Product knowledge"
+      ],
+      [
+        "Search & Q&A",
+        "Relevant information"
+      ],
+      [
+        "Flutter experience",
+        "Field-team access"
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "caption": "Two capabilities support field teams: structured card extraction and access to product knowledge.",
+    "problem": "Help field teams capture contact information and find useful product information from documents and videos.",
+    "contribution": "Project scope combines business-card extraction, product-knowledge search and Q&A, and a mobile experience for field users.",
+    "decision": "OCR and machine learning handle extraction with selective LLM use. Product knowledge access is a separate capability; backend service boundaries are abstracted in this diagram.",
+    "evidence": "A public repository covers the mobile application. The broader extraction and knowledge workflow is described in the portfolio.",
+    "limit": "The mobile repository alone does not verify the full AI backend. Extraction accuracy and search-quality results are not provided.",
+    "next": "Add anonymized card input/output examples and evaluate field-level extraction accuracy and source-grounded answers."
+  },
+  {
     "id": "hireflow",
     "status": "Public project",
     "lanes": [
@@ -1882,67 +2008,608 @@
     "output_node": 16
   },
   {
-    "id": "deeppulse",
-    "status": "Professional project",
+    "id": "face-recognition",
+    "status": "Public project",
     "lanes": [
-      "KNOWLEDGE INGESTION",
-      "FEEDBACK GENERATION"
+      "REGISTRATION & STORAGE",
+      "MATCHING & ATTENDANCE"
     ],
     "nodes": [
       [
-        "Knowledge sources",
-        "Extract + prepare"
+        "PyQt5 desktop app",
+        "Register / Mark / View"
       ],
       [
-        "Embeddings",
-        "Knowledge representation"
+        "MySQL",
+        "students + daily tables"
       ],
       [
-        "PostgreSQL / pgvector",
-        "Vector storage"
+        "Reference photos",
+        "dataset/{roll}.jpg"
       ],
       [
-        "Employee context",
-        "Data + objectives"
+        "Webcam enrollment",
+        "OpenCV / Space saves"
       ],
       [
-        "LangChain retrieval",
-        "Construct grounded context"
+        "Roll-number check",
+        "Unique in students"
       ],
       [
-        "LLM feedback",
-        "Personalized insights"
+        "Reference encoding",
+        "1:1 / claimed roll"
+      ],
+      [
+        "Enrolled encodings",
+        "1:N / embeddings.txt"
+      ],
+      [
+        "Live camera frame",
+        "OpenCV VideoCapture"
+      ],
+      [
+        "Face detection",
+        "HOG / face boxes"
+      ],
+      [
+        "Face encoding",
+        "Landmarks → 128-d"
+      ],
+      [
+        "Euclidean distance",
+        "Live vs reference"
+      ],
+      [
+        "Tolerance check",
+        "Match if ≤ 0.6"
+      ],
+      [
+        "No match",
+        "Keep scanning"
+      ],
+      [
+        "Verified student",
+        "1:1 / roll confirmed"
+      ],
+      [
+        "Named student",
+        "1:N / first match"
+      ],
+      [
+        "Duplicate check",
+        "Once per subject per day"
+      ],
+      [
+        "Already marked",
+        "Popup / no new row"
+      ],
+      [
+        "Attendance.json",
+        "Name → first seen"
+      ],
+      [
+        "Attendance recorded",
+        "Roll + timestamp"
+      ],
+      [
+        "View attendance",
+        "Subject + day → table"
       ]
     ],
     "edges": [
+      {
+        "from": 0,
+        "to": 3,
+        "path": "M 112 102 V 165",
+        "label": "Register",
+        "label_x": 120,
+        "label_y": 138
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "path": "M 212 205 H 245"
+      },
+      {
+        "from": 4,
+        "to": 1,
+        "path": "M 352 172 V 109",
+        "kind": "context"
+      },
+      {
+        "from": 4,
+        "to": 2,
+        "path": "M 452 190 H 470 V 69 H 485",
+        "kind": "context",
+        "label": "Save photo",
+        "label_x": 474,
+        "label_y": 140
+      },
+      {
+        "from": 0,
+        "to": 5,
+        "path": "M 12 80 H 4 V 341 H 245",
+        "label": "Mark attendance",
+        "label_x": 20,
+        "label_y": 334
+      },
+      {
+        "from": 2,
+        "to": 5,
+        "path": "M 552 102 V 280 H 352 V 301",
+        "kind": "context"
+      },
+      {
+        "from": 2,
+        "to": 6,
+        "path": "M 632 102 V 301",
+        "kind": "context"
+      },
+      {
+        "from": 5,
+        "to": 7,
+        "path": "M 352 374 V 400 H 112 V 437"
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "path": "M 592 374 V 400 H 112 V 437"
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "path": "M 212 477 H 245"
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "path": "M 452 477 H 485"
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "path": "M 592 510 V 573"
+      },
+      {
+        "from": 10,
+        "to": 11,
+        "path": "M 492 613 H 459"
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "path": "M 252 613 H 219",
+        "label": "> 0.6",
+        "label_x": 222,
+        "label_y": 601
+      },
+      {
+        "from": 12,
+        "to": 7,
+        "path": "M 112 580 V 517",
+        "kind": "feedback",
+        "label": "Next frame",
+        "label_x": 120,
+        "label_y": 548
+      },
+      {
+        "from": 11,
+        "to": 13,
+        "path": "M 352 646 V 709",
+        "label": "≤ 0.6",
+        "label_x": 360,
+        "label_y": 680
+      },
+      {
+        "from": 11,
+        "to": 14,
+        "path": "M 452 630 H 470 V 690 H 592 V 709"
+      },
+      {
+        "from": 13,
+        "to": 15,
+        "path": "M 352 782 V 845"
+      },
+      {
+        "from": 14,
+        "to": 17,
+        "path": "M 592 782 V 845"
+      },
+      {
+        "from": 15,
+        "to": 16,
+        "path": "M 252 885 H 219",
+        "label": "Exists",
+        "label_x": 222,
+        "label_y": 873
+      },
+      {
+        "from": 15,
+        "to": 18,
+        "path": "M 352 918 V 981",
+        "label": "New entry",
+        "label_x": 360,
+        "label_y": 952
+      },
+      {
+        "from": 18,
+        "to": 19,
+        "path": "M 252 1021 H 219",
+        "kind": "context"
+      }
+    ],
+    "caption": "Registration stores one reference photo per student. Marking attendance converts that photo and every live face into 128-d dlib encodings, measures the Euclidean distance between them, and accepts a match at 0.6 or less. A match passes a once-per-day duplicate check before MySQL records it; a multi-face mode compares each live face against all enrolled encodings.",
+    "problem": "Take class attendance from a webcam instead of a manual roll call, confirm that the person present is the registered student, and count each student once per subject per day.",
+    "contribution": "Project scope covers webcam registration, face encoding and distance-based matching with the face_recognition library, per-subject daily attendance in MySQL with a duplicate check, a PyQt5 interface for registering, marking, and viewing attendance, and a multi-face mode that identifies everyone in view.",
+    "decision": "Matching works on face encodings rather than raw pixels: each face is reduced to 128 numbers that stay similar for the same person across photos, so a comparison is a single distance calculation. The main app verifies the face against the student who entered the roll number (1:1), which needs one comparison and cannot confuse two enrolled students. The multi-face mode searches all enrolled encodings (1:N) to identify everyone in view without typed input.",
+    "evidence": "The public source code shows the full registration, matching, and attendance flow. Reported result: 92% live recognition accuracy; the test conditions behind that figure are not yet documented.",
+    "limit": "Each student is matched against a single reference photo, and the library's default 0.6 tolerance is used without tuning. Lighting, camera angle, and the number of enrolled students behind the 92% figure are not recorded, and false matches and missed matches are not reported separately.",
+    "next": "Measure false-match and missed-match rates across lighting and camera angles, tune the tolerance from those results, enroll several photos per student, add a liveness check, and in multi-face mode select the closest match rather than the first within tolerance.",
+    "subtitle": "Face encodings, distance-based matching, and per-subject attendance in a PyQt5 desktop app.",
+    "summary": "A PyQt5 desktop app that registers students from a webcam photo and marks attendance by face. Each face becomes a 128-dimensional dlib encoding, and a live face matches when its Euclidean distance to the stored encoding is 0.6 or less. MySQL keeps students and one attendance table per subject and day; a multi-face mode identifies everyone in view against all enrolled encodings.",
+    "positions": [
       [
-        0,
-        1
+        12,
+        36
       ],
       [
-        1,
-        2
+        252,
+        36
       ],
       [
-        2,
-        4
+        492,
+        36
       ],
       [
-        3,
-        4
+        12,
+        172
       ],
       [
-        4,
-        5
+        252,
+        172
+      ],
+      [
+        252,
+        308
+      ],
+      [
+        492,
+        308
+      ],
+      [
+        12,
+        444
+      ],
+      [
+        252,
+        444
+      ],
+      [
+        492,
+        444
+      ],
+      [
+        492,
+        580
+      ],
+      [
+        252,
+        580
+      ],
+      [
+        12,
+        580
+      ],
+      [
+        252,
+        716
+      ],
+      [
+        492,
+        716
+      ],
+      [
+        252,
+        852
+      ],
+      [
+        12,
+        852
+      ],
+      [
+        492,
+        852
+      ],
+      [
+        252,
+        988
+      ],
+      [
+        12,
+        988
       ]
     ],
-    "caption": "Retrieved knowledge joins employee data and organizational objectives before feedback generation.",
-    "problem": "Generate employee feedback that reflects relevant knowledge, organizational objectives, and employee-specific data.",
-    "contribution": "Built the ingestion, embedding, retrieval, context-construction, and generation pipeline using LangChain, PostgreSQL, and pgvector.",
-    "decision": "Vector retrieval supplies relevant knowledge before generation. Keeping vectors in PostgreSQL connects retrieval with a relational storage stack.",
-    "evidence": "The described implementation connects employee context and retrieved knowledge in an end-to-end personalized-feedback workflow.",
-    "limit": "No measured feedback-quality results or comparison with a non-retrieval baseline are currently included.",
-    "next": "Assess whether generated feedback is supported by retrieved context and relevant to the stated employee objectives."
+    "stores": [
+      1,
+      2,
+      17
+    ],
+    "node_width": 200,
+    "viewbox": "0 0 752 1080",
+    "lane_labels": [
+      [
+        12,
+        18,
+        "DESKTOP APP / STORED DATA"
+      ],
+      [
+        12,
+        154,
+        "STUDENT REGISTRATION"
+      ],
+      [
+        12,
+        290,
+        "REFERENCE ENCODINGS"
+      ],
+      [
+        12,
+        426,
+        "LIVE FRAME TO 128-D ENCODING"
+      ],
+      [
+        12,
+        562,
+        "FACE COMPARISON"
+      ],
+      [
+        12,
+        698,
+        "IDENTITY DECISION"
+      ],
+      [
+        12,
+        834,
+        "ATTENDANCE WRITE"
+      ],
+      [
+        12,
+        970,
+        "RESULT / REVIEW"
+      ]
+    ],
+    "steps": [
+      "The PyQt5 desktop window has four pages: Home, Register, Mark Attendance, and View Attendance. Each page collects a name, roll number, subject, or day and starts the matching flow.",
+      "MySQL holds a students table (name, roll number, class) and one attendance table per subject and day, each storing roll numbers with timestamps.",
+      "Each registered student has one reference photo, saved as dataset/{roll}.jpg. Every later comparison is made against these photos.",
+      "Registration opens an OpenCV webcam preview. Space captures the current frame as the student's reference photo; Esc cancels.",
+      "Before saving, the app confirms the roll number is not already in the students table. A new student gets a reference photo and a students row; a repeated roll number gets an \"already registered\" message.",
+      "To mark attendance, the student enters a roll number and subject. The app loads only that student's reference photo, detects the face, and converts it into a 128-number face encoding. The live face is then checked against this single encoding: 1:1 verification.",
+      "For recognizing anyone in view, embeddings.py encodes every reference photo up front. Photos with exactly one detected face are kept; their encodings are saved to embeddings.txt and the matching names to name.txt, forming a gallery of all enrolled faces for 1:N identification.",
+      "OpenCV reads webcam frames continuously. Each frame is processed on its own until a match is found or Esc is pressed.",
+      "The face_recognition library's default HOG (histogram of oriented gradients) detector scans the frame and returns a bounding box for every face, so several people can appear in one frame.",
+      "For each box, a facial-landmark model locates the eyes and nose to align the face, and dlib's ResNet network converts it into a 128-dimensional encoding. Photos of the same person produce encodings that sit close together; different people sit further apart.",
+      "Each live encoding is compared with the reference by Euclidean distance, the straight-line gap between two 128-number vectors. In 1:1 mode there is one reference encoding; in 1:N mode the live face is measured against every enrolled encoding.",
+      "compare_faces treats a distance of 0.6 or less as the same person, the library's default tolerance. A lower tolerance is stricter (fewer false matches, more misses); a higher one is more lenient.",
+      "If no face in the frame is within tolerance, nothing is recorded and the loop moves on to the next frame. Pressing Esc stops scanning.",
+      "In 1:1 mode a match confirms that the person at the camera is the student who entered the roll number. A green box and the roll number are drawn on the live frame.",
+      "In 1:N mode the first enrolled encoding within tolerance supplies the student's name from name.txt. The name is drawn on the frame and passed on for attendance logging.",
+      "The attendance table for the subject and day is created on first use. The app then checks whether the roll number already has an entry, so each student is counted once per subject per day.",
+      "If the roll number is already present, no new row is added and a popup reports that attendance was already marked.",
+      "In 1:N mode each recognized name is written once to Attendance.json with the time it was first seen.",
+      "A new entry stores the roll number and timestamp in MySQL, and a popup confirms that attendance was marked.",
+      "The View Attendance page takes a subject and day, reads that attendance table from MySQL, and lists roll numbers with their times."
+    ],
+    "scenario_label": "Explore a face-matching path",
+    "scenario_default": "verify",
+    "scenario_note": "Choose registration, a successful match, a repeat check-in, a frame with no match, multi-face identification, or viewing records. These walkthroughs illustrate the code path; they do not use a camera or recognize real faces.",
+    "tags": [
+      "Python",
+      "OpenCV",
+      "face_recognition / dlib",
+      "128-d encodings",
+      "PyQt5",
+      "MySQL"
+    ],
+    "study_sections": [
+      {
+        "label": "How two faces are compared",
+        "text": "Detect the face with HOG, align it using facial landmarks, encode it with dlib's ResNet into 128 numbers, then measure the Euclidean distance to the reference encoding. A distance of 0.6 or less counts as the same person. The network was trained so that photos of one person land close together, which lets a single threshold separate \"same\" from \"different\"."
+      },
+      {
+        "label": "1:1 verification vs 1:N identification",
+        "text": "Verification answers \"is this the student who entered this roll number?\" with one comparison. Identification answers \"who is this?\" by comparing against every enrolled face, so its work and its chance of a false match grow with class size."
+      },
+      {
+        "label": "Model benchmark vs this system",
+        "text": "The face_recognition library reports 99.38% accuracy for its dlib model on the Labeled Faces in the Wild benchmark. That describes the model on curated photos; the 92% figure is this project's live webcam result."
+      },
+      {
+        "label": "Architecture source",
+        "text": "Based on the public repository mahesh1112/face_recognition, Attendance System folder: test.py (PyQt5 app), dataset.py (registration), test2.py (1:1 attendance marking), and embeddings.py with main.py (multi-face mode)."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "verify",
+        "label": "Mark attendance / match recorded",
+        "groups": [
+          [
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            18,
+            1
+          ]
+        ]
+      },
+      {
+        "id": "repeat",
+        "label": "Mark attendance / already marked",
+        "groups": [
+          [
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15,
+            1
+          ],
+          [
+            16
+          ]
+        ]
+      },
+      {
+        "id": "no-match",
+        "label": "No match / keep scanning",
+        "groups": [
+          [
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            12
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      {
+        "id": "register",
+        "label": "Register a student",
+        "groups": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      {
+        "id": "identify",
+        "label": "Multi-face identification (1:N)",
+        "groups": [
+          [
+            2
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            14
+          ],
+          [
+            17
+          ]
+        ]
+      },
+      {
+        "id": "view",
+        "label": "View attendance",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            19
+          ]
+        ]
+      }
+    ],
+    "output_node": 18
   },
   {
     "id": "finetuning",
@@ -2006,132 +2673,6 @@
     "evidence": "Architecture and workflow exploration; no completed-training benchmark or measured quality improvement is claimed here.",
     "limit": "The diagram is a target design. Runtime availability and GPU memory remain constraints.",
     "next": "Prove a reproducible training run, persist artifacts, and compare base-model and adapted-model quality before validating the bridge."
-  },
-  {
-    "id": "nichrome",
-    "status": "Industry project / mobile source available",
-    "lanes": [
-      "BUSINESS-CARD EXTRACTION",
-      "PRODUCT KNOWLEDGE ACCESS"
-    ],
-    "nodes": [
-      [
-        "Card capture",
-        "Mobile input"
-      ],
-      [
-        "OCR + ML",
-        "Text extraction"
-      ],
-      [
-        "Selective LLM use",
-        "Structured card fields"
-      ],
-      [
-        "Documents + videos",
-        "Product knowledge"
-      ],
-      [
-        "Search & Q&A",
-        "Relevant information"
-      ],
-      [
-        "Flutter experience",
-        "Field-team access"
-      ]
-    ],
-    "edges": [
-      [
-        0,
-        1
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        2,
-        5
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        4,
-        5
-      ]
-    ],
-    "caption": "Two capabilities support field teams: structured card extraction and access to product knowledge.",
-    "problem": "Help field teams capture contact information and find useful product information from documents and videos.",
-    "contribution": "Project scope combines business-card extraction, product-knowledge search and Q&A, and a mobile experience for field users.",
-    "decision": "OCR and machine learning handle extraction with selective LLM use. Product knowledge access is a separate capability; backend service boundaries are abstracted in this diagram.",
-    "evidence": "The linked public repository covers the mobile application. The broader extraction and knowledge workflow is described in the portfolio.",
-    "limit": "The mobile repository alone does not verify the full AI backend. Extraction accuracy and search-quality results are not provided.",
-    "next": "Add anonymized card input/output examples and evaluate field-level extraction accuracy and source-grounded answers."
-  },
-  {
-    "id": "face-recognition",
-    "status": "Public project",
-    "lanes": [
-      "RECOGNITION",
-      "ATTENDANCE RECORDS"
-    ],
-    "nodes": [
-      [
-        "Live camera",
-        "Face input"
-      ],
-      [
-        "Recognition pipeline",
-        "Detect + compare faces"
-      ],
-      [
-        "Identity match",
-        "Recognition result"
-      ],
-      [
-        "PyQt5 interface",
-        "Desktop experience"
-      ],
-      [
-        "Attendance record",
-        "MySQL"
-      ],
-      [
-        "Attendance tracking",
-        "Recorded identity + event"
-      ]
-    ],
-    "edges": [
-      [
-        0,
-        1
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        4,
-        5
-      ]
-    ],
-    "caption": "Live face recognition connects a desktop interface with MySQL-backed attendance records.",
-    "problem": "Connect real-time face recognition with a desktop attendance-tracking workflow.",
-    "contribution": "Project scope covers face comparison and recognition, a PyQt5 desktop interface, and MySQL attendance records.",
-    "decision": "The desktop interface connects recognition results with persistent attendance records. The recognition algorithm is unspecified in the existing description.",
-    "evidence": "Reported result: 92% live recognition accuracy.",
-    "limit": "Test-set size, lighting conditions, identity distribution, and false-match rate are not documented in the current portfolio.",
-    "next": "Record the evaluation setup and report false matches and missed matches across lighting and camera conditions."
   },
   {
     "id": "agentic-workflows",

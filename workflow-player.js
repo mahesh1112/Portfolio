@@ -168,6 +168,12 @@ document.querySelectorAll('.architecture').forEach(figure => {
   let playing = false;
   let completed = false;
   let building = null;
+  // Auto-follow stops as soon as the visitor scrolls the popup themselves, until the next build or replay.
+  let followPopup = true;
+  const stopFollowing = () => { if (figure.closest('dialog[open]')) followPopup = false; };
+  ['wheel', 'touchmove'].forEach(type => document.addEventListener(type, stopFollowing, { passive: true }));
+  document.addEventListener('keydown', event => { if (['PageUp', 'PageDown'].includes(event.key)) stopFollowing(); });
+  document.addEventListener('pointerdown', event => { if (event.target.matches('.project-dialog-scroll')) stopFollowing(); });
   const builder = createDiagramBuilder(figure.querySelector('svg'), nodes, edges);
   const rebuild = document.createElement('button');
   rebuild.type = 'button';
@@ -178,14 +184,24 @@ document.querySelectorAll('.architecture').forEach(figure => {
   figure.querySelector('.workflow-toolbar').hidden = false;
   progress.hidden = false;
 
+  // The canvas scrolls sideways on phones; vertically, only the popup scrolls.
   function revealInCanvas(node) {
+    const behavior = motionIsPaused() ? 'instant' : 'smooth';
     const canvas = figure.querySelector('.diagram-canvas');
     const rect = node.getBoundingClientRect();
     const bounds = canvas.getBoundingClientRect();
     const horizontal = rect.left < bounds.left || rect.right > bounds.right;
     const vertical = rect.top < bounds.top || rect.bottom > bounds.bottom;
-    if (horizontal || vertical) {
-      canvas.scrollTo({ left: horizontal ? canvas.scrollLeft + rect.left - bounds.left - (canvas.clientWidth - rect.width) / 2 : canvas.scrollLeft, top: vertical ? canvas.scrollTop + rect.top - bounds.top - (canvas.clientHeight - rect.height) / 2 : canvas.scrollTop, behavior: motionIsPaused() ? 'instant' : 'smooth' });
+    if (horizontal || (vertical && canvas.scrollHeight > canvas.clientHeight)) {
+      canvas.scrollTo({ left: horizontal ? canvas.scrollLeft + rect.left - bounds.left - (canvas.clientWidth - rect.width) / 2 : canvas.scrollLeft, top: vertical ? canvas.scrollTop + rect.top - bounds.top - (canvas.clientHeight - rect.height) / 2 : canvas.scrollTop, behavior });
+    }
+    const scroller = figure.closest('.project-dialog-scroll');
+    if (!scroller || !followPopup) return;
+    const view = scroller.getBoundingClientRect();
+    const top = view.top + 16;
+    const bottom = view.bottom - 16;
+    if (rect.top < top || rect.bottom > bottom) {
+      scroller.scrollTo({ top: scroller.scrollTop + rect.top - top - Math.max(0, bottom - top - rect.height) / 2, behavior });
     }
   }
   function renderBuild() {
@@ -205,6 +221,7 @@ document.querySelectorAll('.architecture').forEach(figure => {
     clearTimeout(timer);
     finishBuild();
     if (motionIsPaused()) { selectStage(-1); return; }
+    followPopup = true;
     playing = false;
     completed = false;
     selectStage(-1);
@@ -302,6 +319,7 @@ document.querySelectorAll('.architecture').forEach(figure => {
     // Reduced-motion visitors retain manual exploration without timed changes.
     if (motionIsPaused()) { selectStage(restart || active < 0 ? 0 : active); return; }
     if (restart || completed || cursor < 0) cursor = 0;
+    followPopup = true;
     completed = false;
     playing = true;
     selectTimeline(cursor);
@@ -327,8 +345,8 @@ document.querySelectorAll('.architecture').forEach(figure => {
   });
   figure.querySelector('[data-workflow-replay]').addEventListener('click', () => start(true));
   rebuild.addEventListener('click', build);
-  figure.querySelector('[data-workflow-prev]').addEventListener('click', () => { pause(); completed = false; selectTimeline(cursor <= 0 ? timeline.length - 1 : cursor - 1); });
-  figure.querySelector('[data-workflow-next]').addEventListener('click', () => { pause(); completed = false; selectTimeline((cursor + 1) % timeline.length); });
+  figure.querySelector('[data-workflow-prev]').addEventListener('click', () => { followPopup = true; pause(); completed = false; selectTimeline(cursor <= 0 ? timeline.length - 1 : cursor - 1); });
+  figure.querySelector('[data-workflow-next]').addEventListener('click', () => { followPopup = true; pause(); completed = false; selectTimeline((cursor + 1) % timeline.length); });
   figure.querySelector('[data-workflow-reset]').addEventListener('click', () => { finishBuild(); selectStage(-1); });
   speed.addEventListener('change', () => { if (playing) schedule(); });
   scenarioSelect?.addEventListener('change', () => {
@@ -355,7 +373,7 @@ if (typeof HTMLDialogElement !== 'undefined' && 'showModal' in HTMLDialogElement
 
   function restoreCurrent() {
     if (!current) return;
-    workflowPlayers.get(current.figure).pause();
+    if (current.figure) workflowPlayers.get(current.figure).pause();
     current.card.insertBefore(current.expanded, current.anchor);
     current.card.classList.remove('is-open');
     current = null;
@@ -370,10 +388,16 @@ if (typeof HTMLDialogElement !== 'undefined' && 'showModal' in HTMLDialogElement
       dialog.querySelector('h2').textContent = entry.title;
       dialog.querySelector('.project-dialog-summary').textContent = entry.summary;
       entry.card.classList.add('is-open');
+      dialog.querySelector('#project-dialog-note').hidden = !entry.figure;
     }
     if (!wasOpen) dialog.showModal();
     document.documentElement.classList.add('project-modal-open');
     dialog.querySelector('.project-dialog-scroll').scrollTop = 0;
+    // Projects whose workflow is still in progress open straight to their case study.
+    if (!entry.figure) {
+      entry.study.open = true;
+      return;
+    }
     const player = workflowPlayers.get(entry.figure);
     if (study) {
       player.pause();
@@ -394,9 +418,10 @@ if (typeof HTMLDialogElement !== 'undefined' && 'showModal' in HTMLDialogElement
     const entry = { card, expanded, anchor, button, figure: expanded.querySelector('.architecture'), study: expanded.querySelector('.case-study'), title: card.querySelector('h3').textContent, summary: card.querySelector('.project-description').textContent };
     entries.set(card.id, entry);
     card.classList.add('popup-ready');
+    if (!entry.figure) card.classList.add('workflow-draft');
     button.hidden = false;
     button.setAttribute('aria-controls', dialog.id);
-    button.setAttribute('aria-label', `Explore ${entry.title} workflow`);
+    button.setAttribute('aria-label', entry.figure ? `Explore ${entry.title} workflow` : `Read ${entry.title} case study`);
     button.addEventListener('click', () => openProject(entry));
     card.addEventListener('click', event => {
       if (event.target.closest('a, button, summary, details, [role="button"]') || window.getSelection()?.toString()) return;

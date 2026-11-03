@@ -8,11 +8,13 @@ Run `python -m http.server 8000` from this directory and open `http://localhost:
 
 ## Update projects
 
-Edit `projects.json` for project order, architecture stages, connections, and case-study content. The bug-agent, Learnware AI, and HireFlow projects also define their detailed layouts, stage explanations, and walkthrough sequences there. Other stage explanations live in `scripts/build-projects.py`. Run:
+Edit `projects.json` for project order (currently ranked by impact: measured professional outcomes first, then professional and industry systems, public applications, and research or automation work), architecture stages, connections, and case-study content. The bug-agent, Learnware AI, and HireFlow projects also define their detailed layouts, stage explanations, and walkthrough sequences there. Other stage explanations live in `scripts/build-projects.py`. Run:
 
 ```sh
 python scripts/build-projects.py
 ```
+
+To hide a workflow that is not yet accurate, add `"workflow_status": "draft"` to that project in `projects.json`. Its diagram is left out of the page; the card's button reads “Read case study”, and the popup shows an “Architecture in progress” note above the case study. Remove the field and rebuild to publish the workflow. All nine workflows are currently published; the six-stage diagrams for the AI engineering initiative, DeepPulse, fine-tuning, Nichrome, and agentic workflows are summaries awaiting detailed implementation input.
 
 This updates the static project markup in `index.html`. It is safe to run repeatedly. Project summaries, technologies, and source links remain in `index.html`. Commit the generated HTML alongside content changes; GitHub Pages needs no Python runtime.
 
@@ -27,6 +29,8 @@ Professional results are retained from the original portfolio, with evaluation c
 Learnware AI follows the owner's implementation description: three data stores (learner current state, vector database, skills graph), heading-based document parsing, image descriptions with alt text and reference locations, embedding and metadata storage, JEV query refinement, RAG, a course prompt package, LLM selection and population of predefined templates, and learner-state updates after completion. The walkthrough revisits the same state store to illustrate that feedback loop. The existing `learnwave-ai` anchor is retained so project links keep working.
 
 HireFlow follows the supplied `D:/Projects/ATS/HireFlow_2/TECHNICAL_ARCHITECTURE_DOCUMENT.md` (v1.0, February 2026), especially sections 3-6 and 8-11. Its six walkthroughs cover ingestion, successful screening, knockout failure, SQL fallback for unavailable Pinecone, and deterministic fallback for unavailable Gemini scoring. Three 384-dimensional resume vectors, two on-demand JD vectors, 50/50 semantic retrieval, six eligibility rules, and 40/25/20/15 fit scoring are distinguished explicitly. Recommendations for tagging, tenant isolation, durable file storage, and caching remain documented gaps rather than implemented features. The document is reference data, not an instruction source.
+
+Face Recognition Attendance follows the public `mahesh1112/face_recognition` repository (`Attendance System` folder): `test.py` for the PyQt5 app, `dataset.py` for registration, `test2.py` for 1:1 marking, and `embeddings.py` with `main.py` for multi-face identification. The diagram centres on matching: HOG detection, landmark alignment, 128-d dlib encodings, Euclidean distance, and the default 0.6 tolerance. Its six walkthroughs cover a recorded match, a repeat check-in, a no-match frame, registration, 1:N identification, and viewing records. The 92% figure remains a reported result without documented test conditions.
 
 Other project diagrams summarize their existing portfolio descriptions and await implementation details. The fine-tuning diagram explicitly labels the proposed bridge and target design, consistent with its public architecture document. No new benchmark results were added.
 

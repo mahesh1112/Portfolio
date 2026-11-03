@@ -37,11 +37,80 @@ if ('IntersectionObserver' in window) {
       }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.section-heading, .project-card, .skill-card, .timeline-item, .about-layout, .contact-inner').forEach(element => {
+  document.querySelectorAll('.section-heading, .project-card, .skill-card, .timeline, .timeline-item, .about-layout, .contact-inner').forEach(element => {
     element.classList.add('reveal');
     observer.observe(element);
   });
+
+  // Impact figures count up the first time they scroll into view.
+  const counters = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      counters.unobserve(entry.target);
+      const digits = entry.target.firstChild;
+      const target = Number(digits.textContent.replace(/,/g, ''));
+      if (motionPaused() || !target) return;
+      const started = performance.now();
+      const tick = now => {
+        const progress = Math.min(1, (now - started) / 1400);
+        digits.textContent = Math.round(target * (1 - (1 - progress) ** 3)).toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.metric strong').forEach(metric => {
+    if (metric.firstChild?.nodeType === Node.TEXT_NODE) counters.observe(metric);
+  });
+
+  // Highlight the navigation link for the section currently being read.
+  const navTargets = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta)')];
+  const sections = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navTargets.forEach(link => {
+        const current = link.hash === '#' + entry.target.id;
+        link.classList.toggle('is-active', current);
+        if (current) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  // Sections without a link (hero, contact) clear the highlight.
+  document.querySelectorAll('main section[id]').forEach(section => sections.observe(section));
 }
+
+function motionPaused() { return document.documentElement.classList.contains('motion-paused'); }
+
+const scrollProgress = document.createElement('span');
+scrollProgress.className = 'scroll-progress';
+scrollProgress.setAttribute('aria-hidden', 'true');
+document.querySelector('.nav-wrap').append(scrollProgress);
+let progressFrame = 0;
+function updateScrollProgress() {
+  progressFrame = 0;
+  const range = document.documentElement.scrollHeight - innerHeight;
+  scrollProgress.style.transform = `scaleX(${range > 0 ? Math.min(1, scrollY / range) : 0})`;
+}
+addEventListener('scroll', () => { progressFrame ||= requestAnimationFrame(updateScrollProgress); }, { passive: true });
+addEventListener('resize', updateScrollProgress);
+updateScrollProgress();
+
+// A cursor-following spotlight and a slight tilt on project cards, for precise pointers only.
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('pointermove', event => {
+    if (!finePointer.matches || motionPaused()) return;
+    const bounds = card.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    card.style.setProperty('--spot-x', `${x * 100}%`);
+    card.style.setProperty('--spot-y', `${y * 100}%`);
+    card.style.setProperty('--tilt-x', `${(0.5 - y) * 2.4}deg`);
+    card.style.setProperty('--tilt-y', `${(x - 0.5) * 2.4}deg`);
+    card.classList.add('is-tilting');
+  });
+  card.addEventListener('pointerleave', () => card.classList.remove('is-tilting'));
+});
 
 const menu = document.getElementById('mobileMenu');
 menu.setAttribute('aria-controls', 'navLinks');

@@ -64,12 +64,15 @@ try {
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url });
   for (let attempt = 0; attempt < 60; attempt++) {
-    if (await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 89')) break;
+    if (await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 53')) break;
     await delay(100);
   }
-  check(await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 89'), 'Nine interactive diagrams / 89 explorable stages');
+  check(await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 103'), 'Nine published interactive diagrams / 103 explorable stages');
+  check(await evaluate(`!document.querySelector('.project-card.workflow-draft, .workflow-pending') && [...document.querySelectorAll('.project-open')].every(button => button.textContent.startsWith('Explore workflow'))`), 'Every project publishes its workflow');
+  check(await evaluate(`!document.querySelector('.project-repo-link, .project-card a[href*="github.com"]')`), 'Project cards carry no repository links');
+  check(await evaluate(`[...document.querySelectorAll('.project-card')].map(card => card.id).join() === 'ai-engineering,bug-agent,learnwave-ai,deeppulse,nichrome,hireflow,face-recognition,finetuning,agentic-workflows'`), 'Projects are ordered by impact');
   check(await evaluate(`(async () => {
-    for (const button of document.querySelectorAll('.project-open')) {
+    for (const button of document.querySelectorAll('.project-card:not(.workflow-draft) .project-open')) {
       const card = button.closest('.project-card');
       const figure = card.querySelector('.architecture');
       button.click();
@@ -94,7 +97,7 @@ try {
       if (!card.contains(figure)) return false;
     }
     return true;
-  })()`), 'All nine popups, stage controls, overview reset, and content restoration');
+  })()`), 'All published workflow popups, stage controls, overview reset, and content restoration');
   check(await evaluate(`(async () => {
     document.querySelector('#bug-agent .project-open').click();
     const figure = document.querySelector('.project-dialog .architecture');
@@ -182,7 +185,37 @@ try {
     await new Promise(resolve => setTimeout(resolve, 40));
     return true;
   })()`), 'HireFlow: ingestion, screening, knockout bypass, SQL search fallback, deterministic scoring fallback, and separate retrieval/fit weights');
-  await evaluate(`document.querySelector('.project-card h3').click()`);
+  check(await evaluate(`(async () => {
+    document.querySelector('#face-recognition .project-open').click();
+    const figure = document.querySelector('.project-dialog .architecture');
+    const selector = figure.querySelector('[data-workflow-scenario]');
+    const scenarios = JSON.parse(figure.dataset.scenarios);
+    if (scenarios.length !== 6 || figure.querySelectorAll('[data-step]').length !== 20) return false;
+    for (const route of scenarios) {
+      selector.value = route.id;
+      selector.dispatchEvent(new Event('change'));
+      const visited = [];
+      for (let i = 0; i < route.groups.length; i++) {
+        figure.querySelector('[data-workflow-next]').click();
+        visited.push(...[...figure.querySelectorAll('.diagram-node[aria-pressed=true]')].map(node => Number(node.dataset.step)));
+      }
+      const matched = visited.indexOf(7) < visited.indexOf(8) && visited.indexOf(8) < visited.indexOf(9) && visited.indexOf(9) < visited.indexOf(10) && visited.indexOf(10) < visited.indexOf(11);
+      if (['verify', 'repeat', 'no-match', 'identify'].includes(route.id) && !matched) return false;
+      if (route.id === 'verify' && (!visited.includes(5) || visited.includes(6) || visited.at(-1) !== 18)) return false;
+      if (route.id === 'repeat' && (visited.includes(18) || visited.at(-1) !== 16)) return false;
+      if (route.id === 'no-match' && (visited.includes(13) || visited.at(-1) !== 7)) return false;
+      if (route.id === 'identify' && (!visited.includes(6) || visited.includes(5) || visited.includes(15) || visited.at(-1) !== 17)) return false;
+      if (route.id === 'register' && (visited.includes(7) || visited.at(-1) !== 2)) return false;
+    }
+    if (!figure.querySelector('.diagram-edge[data-from="12"][data-to="7"][data-kind="feedback"]')) return false;
+    selector.value = 'verify'; selector.dispatchEvent(new Event('change'));
+    const text = figure.textContent;
+    if (!text.includes('128-dimensional') || !text.includes('Euclidean distance') || !text.includes('0.6')) return false;
+    document.querySelector('.project-dialog').close();
+    await new Promise(resolve => setTimeout(resolve, 40));
+    return true;
+  })()`), 'Face recognition: 1:1 verification, 1:N identification, distance tolerance, no-match loop, duplicate check, registration, and review');
+  await evaluate(`document.querySelector('#learnwave-ai h3').click()`);
   check(await evaluate(`document.querySelector('.project-dialog').open && document.querySelector('.project-dialog .is-building') !== null && document.querySelector('.project-dialog .build-cursor') !== null`), 'Card body click opens popup and starts building the diagram live');
   await evaluate(`(() => { const figure = document.querySelector('.project-dialog .architecture'); figure.querySelector('[data-workflow-speed]').value = '1300'; figure.querySelector('[data-workflow-speed]').dispatchEvent(new Event('change')); figure.querySelector('[data-workflow-play]').click(); window.qaText = [...figure.querySelectorAll('svg text')].map(text => text.textContent).join('|'); figure.querySelector('[data-workflow-rebuild]').click(); })()`);
   check(await evaluate(`(async () => {
@@ -202,9 +235,9 @@ try {
   check(await evaluate(`document.querySelector('.project-dialog [data-step="1"]').getAttribute('aria-pressed') === 'true' && !document.querySelector('.project-dialog .is-playing')`), 'Pause holds the current stage');
   await evaluate(`document.querySelector('.project-dialog [data-workflow-replay]').click()`);
   check(await evaluate(`document.querySelector('.project-dialog [data-step="0"]').getAttribute('aria-pressed') === 'true'`), 'Replay starts from the first stage');
-  await evaluate(`document.querySelector('.project-dialog [data-step="5"]').dispatchEvent(new MouseEvent('click', {bubbles:true})); document.querySelector('.project-dialog [data-workflow-play]').click()`);
-  await delay(1500);
-  check(await evaluate(`document.querySelector('.project-dialog .workflow-counter').textContent === 'WALKTHROUGH COMPLETE' && document.querySelectorAll('.project-dialog .diagram-node.is-completed').length === 6 && !document.querySelector('.project-dialog .is-playing')`), 'Playback completes and stops with all stages marked complete');
+  await evaluate(`document.querySelector('.project-dialog [data-step="14"]').dispatchEvent(new MouseEvent('click', {bubbles:true})); document.querySelector('.project-dialog [data-workflow-play]').click()`);
+  await delay(3200);
+  check(await evaluate(`document.querySelector('.project-dialog .workflow-counter').textContent === 'WALKTHROUGH COMPLETE' && document.querySelectorAll('.project-dialog .diagram-node.is-completed').length === 15 && !document.querySelector('.project-dialog .is-playing')`), 'Playback completes and stops with all stages marked complete');
   await evaluate(`document.querySelector('.project-dialog [data-step="0"]').focus()`);
   await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'ArrowRight', code: 'ArrowRight' });
   await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: 'ArrowRight', code: 'ArrowRight' });
@@ -266,7 +299,7 @@ try {
   check(await evaluate(`document.documentElement.classList.contains('motion-paused')`), 'Reduced-motion preference respected');
   await evaluate(`document.querySelector('[data-filter="All"]').click(); location.hash = '#work';`);
   await delay(100);
-  await evaluate(`document.querySelector('.project-open').click()`);
+  await evaluate(`document.querySelector('.project-card:not(.workflow-draft) .project-open').click()`);
   check(await evaluate(`!document.querySelector('.project-dialog .is-playing') && document.querySelector('.project-dialog .workflow-overview').hidden === false`), 'Reduced-motion popup opens without autoplay');
   await evaluate(`document.querySelector('.project-dialog [data-workflow-next]').click()`);
   check(await evaluate(`document.querySelector('.project-dialog [data-step="0"]').getAttribute('aria-pressed') === 'true'`), 'Manual workflow exploration works with reduced motion');
@@ -318,7 +351,7 @@ try {
   await delay(500);
   const noJs = await cdp('DOM.getDocument');
   const html = (await cdp('DOM.getOuterHTML', { nodeId: noJs.root.nodeId })).outerHTML;
-  check((html.match(/class="architecture"/g) || []).length === 9 && (html.match(/class="case-study"/g) || []).length === 9 && !html.includes('class="project-card featured reveal"'), 'Static diagrams and native case studies available without JavaScript');
+  check((html.match(/class="architecture"/g) || []).length === 9 && !html.includes('class="workflow-pending"') && (html.match(/class="case-study"/g) || []).length === 9 && !html.includes('class="project-card featured reveal"'), 'Static diagrams and native case studies available without JavaScript');
   check(errors.length === 0, 'No browser JavaScript errors');
   console.log(JSON.stringify({ url, desktopScreenshot, mobileScreenshot }));
 } finally {
