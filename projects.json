@@ -60,7 +60,8 @@
     "decision": "Tool execution has checks before and after a call. This creates explicit places to constrain actions and inspect generated changes alongside the delivery pipeline.",
     "evidence": "Reported outcomes: 1,875+ engineering hours saved across 238 tasks; 90.8% backend and 88.6% frontend accuracy.",
     "limit": "The current case study does not specify the time-saving baseline or accuracy rubric. These figures describe the reported initiative outcomes.",
-    "next": "Document the baseline, review rubric, and accepted versus reworked outputs for each task type."
+    "next": "Document the baseline, review rubric, and accepted versus reworked outputs for each task type.",
+    "impact": "⚡ 1,875+ engineering hours saved · 238 tasks"
   },
   {
     "id": "bug-agent",
@@ -795,7 +796,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "impact": "⚡ 84% success across 42 defects · 207+ hours saved"
   },
   {
     "id": "learnwave-ai",
@@ -1169,7 +1171,8 @@
       "Embeddings",
       "Skills graph",
       "Prompt packaging"
-    ]
+    ],
+    "impact": "⚡ 3 data stores · JEV-refined RAG · learner-state feedback"
   },
   {
     "id": "deeppulse",
@@ -1232,7 +1235,8 @@
     "decision": "Vector retrieval supplies relevant knowledge before generation. Keeping vectors in PostgreSQL connects retrieval with a relational storage stack.",
     "evidence": "The described implementation connects employee context and retrieved knowledge in an end-to-end personalized-feedback workflow.",
     "limit": "No measured feedback-quality results or comparison with a non-retrieval baseline are currently included.",
-    "next": "Assess whether generated feedback is supported by retrieved context and relevant to the stated employee objectives."
+    "next": "Assess whether generated feedback is supported by retrieved context and relevant to the stated employee objectives.",
+    "impact": "⚡ pgvector retrieval · employee context · personalized feedback"
   },
   {
     "id": "nichrome",
@@ -1295,7 +1299,8 @@
     "decision": "OCR and machine learning handle extraction with selective LLM use. Product knowledge access is a separate capability; backend service boundaries are abstracted in this diagram.",
     "evidence": "A public repository covers the mobile application. The broader extraction and knowledge workflow is described in the portfolio.",
     "limit": "The mobile repository alone does not verify the full AI backend. Extraction accuracy and search-quality results are not provided.",
-    "next": "Add anonymized card input/output examples and evaluate field-level extraction accuracy and source-grounded answers."
+    "next": "Add anonymized card input/output examples and evaluate field-level extraction accuracy and source-grounded answers.",
+    "impact": "⚡ OCR + ML · selective LLM extraction · product Q&A"
   },
   {
     "id": "hireflow",
@@ -1559,7 +1564,7 @@
     "title": "HireFlow",
     "subtitle": "Resume ingestion, dual-vector retrieval, deterministic rules, and explainable candidate ranking.",
     "summary": "A Next.js and FastAPI screening application that parses resumes and job descriptions with Gemini, indexes three 384-dimensional resume vectors in Pinecone, and combines semantic retrieval with six knockout rules and weighted candidate scoring. PostgreSQL stores profiles, jobs, progress, and results.",
-    "impact": "3 resume vectors / 6 knockout rules / 4 scoring dimensions",
+    "impact": "⚡ 3 resume vectors · 6 knockout rules · 4 scoring dimensions",
     "positions": [
       [
         12,
@@ -2609,7 +2614,8 @@
         ]
       }
     ],
-    "output_node": 18
+    "output_node": 18,
+    "impact": "⚡ 92% live recognition accuracy · 128-d face encodings"
   },
   {
     "id": "finetuning",
@@ -2672,7 +2678,8 @@
     "decision": "The static UI and GPU execution are separate. The authenticated bridge is a proposed component; Colab must first be started by the user.",
     "evidence": "Architecture and workflow exploration; no completed-training benchmark or measured quality improvement is claimed here.",
     "limit": "The diagram is a target design. Runtime availability and GPU memory remain constraints.",
-    "next": "Prove a reproducible training run, persist artifacts, and compare base-model and adapted-model quality before validating the bridge."
+    "next": "Prove a reproducible training run, persist artifacts, and compare base-model and adapted-model quality before validating the bridge.",
+    "impact": "⚡ LoRA / QLoRA · PEFT training · Colab GPU runtime"
   },
   {
     "id": "agentic-workflows",
@@ -2735,6 +2742,7 @@
     "decision": "Workflow configuration and generated outputs live in version control, making changes and recurring runs easier to trace.",
     "evidence": "The current project description establishes scheduled workflow automation; it does not establish an autonomous multi-agent system.",
     "limit": "No run-success rate or measured time-saving result is included in the portfolio.",
-    "next": "Track failed and successful runs, review summary quality, and document behavior when a source is unavailable."
+    "next": "Track failed and successful runs, review summary quality, and document behavior when a source is unavailable.",
+    "impact": "⚡ Scheduled GitHub Actions · versioned AI summaries"
   }
 ]

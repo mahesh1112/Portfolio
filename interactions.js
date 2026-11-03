@@ -10,9 +10,9 @@ motionToggle.addEventListener('click', () => setMotion(motionToggle.getAttribute
 reducedMotion.addEventListener('change', event => setMotion(event.matches));
 
 const focusAreas = {
-  models: ['01 / MODEL ADAPTATION', 'Smaller models. Greater possibilities.', 'Exploring fine-tuning, distillation, and quantization to balance model quality with efficiency.', '#finetuning'],
+  agents: ['01 / AGENTIC SYSTEMS', 'From recurring tasks to reliable workflows.', 'Building tool-using agents with human approvals, guardrails, and browser-assisted validation.', '#bug-agent'],
   rag: ['02 / RETRIEVAL', 'The right context changes everything.', 'Connecting documents and learning content with context-aware retrieval to make answers more useful.', '#learnwave-ai'],
-  agents: ['03 / AGENTIC SYSTEMS', 'From recurring tasks to reliable workflows.', 'Building tool-using agents with human approvals, guardrails, and browser-assisted validation.', '#bug-agent'],
+  models: ['03 / MODEL ADAPTATION', 'Smaller models. Greater possibilities.', 'Exploring fine-tuning, distillation, and quantization to balance model quality with efficiency.', '#finetuning'],
   evaluation: ['04 / EVALUATION', 'Good AI needs more than a good demo.', 'Measuring faithfulness, relevance, latency, and model quality with RAGAS, DeepEval, and experiment tracking.', '#skills']
 };
 document.querySelectorAll('[data-focus]').forEach(button => {

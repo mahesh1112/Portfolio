@@ -255,14 +255,14 @@ try {
   const closeState = await evaluate(`({ open: document.querySelector('.project-dialog').open, focus: document.activeElement.className, playing: !!document.querySelector('.is-playing'), locked: document.documentElement.classList.contains('project-modal-open') })`);
   check(!closeState.open && closeState.focus.includes('project-open') && !closeState.playing && !closeState.locked, 'Escape closes popup, stops playback, restores focus and page scrolling: ' + JSON.stringify(closeState));
   check(await evaluate(`(() => {
-    const expected = { 'All': 9, 'Fine-Tuning': 1, 'RAG & LLMs': 4, 'Agents & Applied ML': 4 };
+    const expected = { 'All': 9, 'RAG & LLMs': 5, 'Agents & Applied ML': 4 };
     for (const button of document.querySelectorAll('[data-filter]')) {
       button.click();
       if (document.querySelectorAll('.project-card:not([hidden])').length !== expected[button.dataset.filter]) return false;
     }
     return true;
   })()`), 'All project category filters');
-  await evaluate(`document.querySelector('[data-filter="Fine-Tuning"]').click(); location.hash = '#learnwave-ai';`);
+  await evaluate(`document.querySelector('[data-filter="Agents & Applied ML"]').click(); location.hash = '#learnwave-ai';`);
   await delay(150);
   check(await evaluate(`!document.getElementById('learnwave-ai').hidden`), 'Direct project links reveal filtered-out projects');
   await evaluate(`document.querySelector('#hireflow .diagram-jump').click()`);
