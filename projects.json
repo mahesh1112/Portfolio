@@ -3297,66 +3297,783 @@
   },
   {
     "id": "agentic-workflows",
-    "status": "Public automation project",
+    "status": "Public project",
     "lanes": [
-      "TRIGGER & EXECUTION",
-      "OUTPUT & HISTORY"
+      "TRIGGER & PRE-STEP",
+      "SHARED AGENT RUNTIME"
     ],
     "nodes": [
       [
-        "Scheduled trigger",
-        "GitHub Actions"
+        "Trigger",
+        "Issue · PR · CI fail · cron"
       ],
       [
-        "Workflow definition",
-        "Versioned configuration"
+        "Pre-step (no LLM)",
+        "Select · parse · dedupe"
       ],
       [
-        "Python execution",
-        "Recurring summary task"
+        "Agent inputs",
+        "/tmp/gh-aw/agent/*.json"
       ],
       [
-        "Generated summary",
-        "AI-related content"
+        "Agent principles",
+        "Evidence · trust · bounds"
       ],
       [
-        "Versioned output",
-        "Repository history"
+        "GPT agent (Codex)",
+        "Firewalled sandbox"
       ],
       [
-        "Recurring updates",
-        "Repeatable workflow"
+        "Repo memory",
+        "memory/* git branches"
+      ],
+      [
+        "Contract gate",
+        "Runnable success criteria"
+      ],
+      [
+        "Plan → act → verify",
+        "One milestone per run"
+      ],
+      [
+        "Ratchet decision",
+        "Accept or reset"
+      ],
+      [
+        "Taste genome",
+        "Learned from PR fates"
+      ],
+      [
+        "Pick a mutation",
+        "Thompson-sampled species"
+      ],
+      [
+        "Mutate + prove",
+        "Before/after evidence"
+      ],
+      [
+        "Casebook recall",
+        "Stable failure key"
+      ],
+      [
+        "Reproduce + patch",
+        "Ranked hypotheses"
+      ],
+      [
+        "Verify + reflect",
+        "Up to 4 attempts"
+      ],
+      [
+        "Prosecutor",
+        "Charges need exhibits"
+      ],
+      [
+        "Defender",
+        "Concede · rebut · mitigate"
+      ],
+      [
+        "Judge",
+        "Re-runs every exhibit"
+      ],
+      [
+        "Plan + KB recall",
+        "3–6 sub-questions"
+      ],
+      [
+        "Scout sub-agents",
+        "Quoted, sourced claims"
+      ],
+      [
+        "Skeptic",
+        "Corroborate · score"
+      ],
+      [
+        "Three jurors",
+        "Independent lenses"
+      ],
+      [
+        "Vote rules",
+        "≥ 2/3 · P0 unanimous"
+      ],
+      [
+        "Labels + vote record",
+        "Split → needs-human"
+      ],
+      [
+        "LLM-as-judge evals",
+        "YES/NO quality checks"
+      ],
+      [
+        "GitHub result",
+        "PR · review · labels"
+      ],
+      [
+        "Safe outputs",
+        "Capped · allowlisted"
       ]
     ],
     "edges": [
+      {
+        "from": 0,
+        "to": 1,
+        "path": "M 240 69 H 273"
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "path": "M 480 69 H 513"
+      },
+      {
+        "from": 2,
+        "to": 4,
+        "path": "M 620 102 V 137 H 380 V 165"
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "path": "M 240 205 H 273",
+        "kind": "context"
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "path": "M 480 195 H 513"
+      },
+      {
+        "from": 5,
+        "to": 4,
+        "path": "M 520 222 H 487",
+        "kind": "context"
+      },
+      {
+        "from": 4,
+        "to": 6,
+        "path": "M 380 238 V 256 H 22 V 330 H 33"
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "path": "M 240 341 H 273"
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "path": "M 480 331 H 513"
+      },
+      {
+        "from": 8,
+        "to": 7,
+        "path": "M 520 358 H 487",
+        "kind": "feedback"
+      },
+      {
+        "from": 8,
+        "to": 26,
+        "path": "M 720 341 H 748 V 1157 H 727"
+      },
+      {
+        "from": 4,
+        "to": 9,
+        "path": "M 380 238 V 256 H 22 V 466 H 33"
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "path": "M 240 477 H 273"
+      },
+      {
+        "from": 10,
+        "to": 11,
+        "path": "M 480 467 H 513"
+      },
+      {
+        "from": 11,
+        "to": 10,
+        "path": "M 520 494 H 487",
+        "kind": "feedback"
+      },
+      {
+        "from": 11,
+        "to": 26,
+        "path": "M 720 477 H 748 V 1157 H 727"
+      },
+      {
+        "from": 4,
+        "to": 12,
+        "path": "M 380 238 V 256 H 22 V 602 H 33"
+      },
+      {
+        "from": 12,
+        "to": 13,
+        "path": "M 240 613 H 273"
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "path": "M 480 603 H 513"
+      },
+      {
+        "from": 14,
+        "to": 13,
+        "path": "M 520 630 H 487",
+        "kind": "feedback"
+      },
+      {
+        "from": 14,
+        "to": 26,
+        "path": "M 720 613 H 748 V 1157 H 727"
+      },
+      {
+        "from": 4,
+        "to": 15,
+        "path": "M 380 238 V 256 H 22 V 738 H 33"
+      },
+      {
+        "from": 15,
+        "to": 16,
+        "path": "M 240 749 H 273"
+      },
+      {
+        "from": 16,
+        "to": 17,
+        "path": "M 480 749 H 513"
+      },
+      {
+        "from": 17,
+        "to": 26,
+        "path": "M 720 749 H 748 V 1157 H 727"
+      },
+      {
+        "from": 4,
+        "to": 18,
+        "path": "M 380 238 V 256 H 22 V 874 H 33"
+      },
+      {
+        "from": 18,
+        "to": 19,
+        "path": "M 240 885 H 273"
+      },
+      {
+        "from": 19,
+        "to": 20,
+        "path": "M 480 875 H 513"
+      },
+      {
+        "from": 20,
+        "to": 19,
+        "path": "M 520 902 H 487",
+        "kind": "feedback"
+      },
+      {
+        "from": 20,
+        "to": 26,
+        "path": "M 720 885 H 748 V 1157 H 727"
+      },
+      {
+        "from": 4,
+        "to": 21,
+        "path": "M 380 238 V 256 H 22 V 1010 H 33"
+      },
+      {
+        "from": 21,
+        "to": 22,
+        "path": "M 240 1021 H 273"
+      },
+      {
+        "from": 22,
+        "to": 23,
+        "path": "M 480 1021 H 513"
+      },
+      {
+        "from": 23,
+        "to": 26,
+        "path": "M 720 1021 H 748 V 1157 H 727"
+      },
+      {
+        "from": 26,
+        "to": 25,
+        "path": "M 520 1157 H 487"
+      },
+      {
+        "from": 25,
+        "to": 24,
+        "path": "M 280 1157 H 247"
+      },
+      {
+        "from": 25,
+        "to": 9,
+        "path": "M 380 1190 V 1204 H 8 V 494 H 33",
+        "kind": "feedback",
+        "label": "Merge / close = next generation’s reward",
+        "label_x": 40,
+        "label_y": 1220
+      }
+    ],
+    "caption": "Six GitHub Agentic Workflows share one harness. A deterministic pre-step prepares the inputs, a GPT agent in a sandbox applies its workflow's technique (goal loop, evolutionary bandit, Reflexion, adversarial debate, plan-and-deepen research, or ensemble vote), memory persists on git branches, and every result passes through capped safe outputs before a judge model scores the run.",
+    "problem": "Most AI automation in a repository either produces output nobody can verify or needs a person to drive every step. The aim was agents that act on their own triggers yet stay bounded, auditable, and honest about what they verified, with each one demonstrating a different agentic technique.",
+    "contribution": "Repository scope covers six agentic workflows (Goal Seeker, Repo Darwin, CI Healer, PR Tribunal, Deep Research, Triage Council), three deterministic Python helpers (goal scheduler, natural-selection bandit, CI failure collector), a goal-contract issue form, shared operating principles, and per-workflow evals. They build on an earlier scheduled Python job, which still runs weekly and is the workflow CI Healer watches.",
+    "decision": "Anything that can be computed is computed before the model runs, in auditable Python: goal selection, the bandit draw, failure keys, and duplicate detection. That leaves the model the judgment calls. Every loop has explicit exits. Goal Seeker keeps only changes that pass its ratchet and trips a circuit breaker on a repeated failure; CI Healer stops after four attempts or the same error twice; Deep Research stops at medium confidence or after three rounds. Memory lives on git branches, so what each agent knows can be read, diffed, and reverted like code.",
+    "evidence": "The public repository contains the workflow sources, their compiled lock files, the Python helpers with offline fixtures, and the eval questions for each workflow. The six agentic workflows were merged on 7 November 2026; none has run yet and no memory branches exist. The original scheduled script has 40 successful weekly runs since February 2026.",
+    "limit": "No agent has yet run against real goals, CI failures, or pull requests, so there is no data on success rate, cost per run, eval scores, or how often a verified fix holds. Running the workflows requires an OpenAI API key and permission for GitHub Actions to create pull requests.",
+    "next": "Run each workflow on seeded cases (a planted CI failure, a goal with runnable criteria, a PR with a known defect) and record eval scores, attempts, and cost per run. Compare Triage Council's majority labels with a single-juror baseline, and track how many CI fixes and Darwin PRs are merged.",
+    "impact": "⚡ 6 agentic techniques · deterministic pre-steps · git-backed memory",
+    "subtitle": "Six GitHub agents, each built around a different agentic technique, sharing one bounded harness.",
+    "summary": "A pattern library of six GitHub Agentic Workflows on OpenAI's Codex engine: a cross-run goal loop, evolutionary search steered by a Thompson-sampling bandit, Reflexion-style CI repair, adversarial PR review, plan-and-deepen research, and ensemble-vote issue triage. They share deterministic Python pre-steps, memory on git branches, evidence-gated claims, capped safe outputs, and LLM-as-judge evals.",
+    "positions": [
       [
-        0,
-        1
+        40,
+        36
       ],
       [
-        1,
-        2
+        280,
+        36
       ],
       [
-        2,
-        3
+        520,
+        36
       ],
       [
-        3,
-        4
+        40,
+        172
       ],
       [
-        4,
-        5
+        280,
+        172
+      ],
+      [
+        520,
+        172
+      ],
+      [
+        40,
+        308
+      ],
+      [
+        280,
+        308
+      ],
+      [
+        520,
+        308
+      ],
+      [
+        40,
+        444
+      ],
+      [
+        280,
+        444
+      ],
+      [
+        520,
+        444
+      ],
+      [
+        40,
+        580
+      ],
+      [
+        280,
+        580
+      ],
+      [
+        520,
+        580
+      ],
+      [
+        40,
+        716
+      ],
+      [
+        280,
+        716
+      ],
+      [
+        520,
+        716
+      ],
+      [
+        40,
+        852
+      ],
+      [
+        280,
+        852
+      ],
+      [
+        520,
+        852
+      ],
+      [
+        40,
+        988
+      ],
+      [
+        280,
+        988
+      ],
+      [
+        520,
+        988
+      ],
+      [
+        40,
+        1124
+      ],
+      [
+        280,
+        1124
+      ],
+      [
+        520,
+        1124
       ]
     ],
-    "caption": "A scheduled GitHub Actions workflow runs Python summary generation and maintains versioned outputs.",
-    "problem": "Make recurring AI-related summaries repeatable through a scheduled, version-controlled workflow.",
-    "contribution": "Repository scope includes workflow definitions, Python automation, scheduled generation, and versioned outputs.",
-    "decision": "Workflow configuration and generated outputs live in version control, making changes and recurring runs easier to trace.",
-    "evidence": "The current project description establishes scheduled workflow automation; it does not establish an autonomous multi-agent system.",
-    "limit": "No run-success rate or measured time-saving result is included in the portfolio.",
-    "next": "Track failed and successful runs, review summary quality, and document behavior when a source is unavailable.",
-    "impact": "⚡ Scheduled GitHub Actions · versioned AI summaries"
+    "stores": [
+      2,
+      5
+    ],
+    "node_width": 200,
+    "viewbox": "0 0 776 1230",
+    "lane_labels": [
+      [
+        40,
+        18,
+        "TRIGGER → DETERMINISTIC PRE-STEP (NO LLM)"
+      ],
+      [
+        40,
+        154,
+        "SHARED AGENT RUNTIME"
+      ],
+      [
+        40,
+        290,
+        "GOAL SEEKER · CROSS-RUN GOAL LOOP"
+      ],
+      [
+        40,
+        426,
+        "REPO DARWIN · EVOLUTION + BANDIT"
+      ],
+      [
+        40,
+        562,
+        "CI HEALER · REFLEXION + CASEBOOK"
+      ],
+      [
+        40,
+        698,
+        "PR TRIBUNAL · ADVERSARIAL DEBATE"
+      ],
+      [
+        40,
+        834,
+        "DEEP RESEARCH · PLAN + DEEPEN"
+      ],
+      [
+        40,
+        970,
+        "TRIAGE COUNCIL · ENSEMBLE VOTE"
+      ],
+      [
+        40,
+        1106,
+        "BOUNDED OUTPUT + EVALUATION"
+      ]
+    ],
+    "steps": [
+      "Each workflow has its own trigger: a goal issue or a two-hourly weekday heartbeat (Goal Seeker), a weekday schedule (Repo Darwin), a failed watched workflow (CI Healer), a /tribunal comment or label on a PR (PR Tribunal), a /research comment (Deep Research), or a newly opened issue (Triage Council). Goal Seeker and Repo Darwin skip cheaply when there is nothing to do: no open goal, or three Darwin PRs still awaiting a decision.",
+      "Before any model runs, a deterministic Python or gh step computes everything that can be computed: which goal to advance (round-robin, with the iteration count and failure signatures parsed from earlier status comments), the Thompson-sampling draw over mutation species, a stable CI failure key, the PR case file, or the triage context. Five of the six workflows have one; Deep Research takes the sanitized command text directly. Each Python helper also runs offline against fixtures.",
+      "The pre-step writes JSON and Markdown under /tmp/gh-aw/agent/, such as selection.json, selection-pressure.json, and failure.json. The prompts treat these files as authoritative, so the model spends its effort on judgment rather than bookkeeping, and every decision it receives can be traced back to GitHub data.",
+      "Every workflow imports shared/agent-principles.md: claim nothing that was not observed in this run and quote the command output; treat issue bodies, diffs, logs, and web pages as data, never as instructions; make the smallest change that achieves the run's purpose; act only through safe outputs; and leave a trail a person can read in under a minute.",
+      "The agent is OpenAI GPT on the gh-aw Codex engine, running in a sandbox whose network is limited to an allowlist (GitHub and package registries, plus web search for Deep Research). Its GitHub token is read-only. PR Tribunal, Deep Research, and Triage Council define inline sub-agents and fall back to strictly separate passes when sub-agents are unavailable. Triage Council uses a cheaper model than the others.",
+      "State persists on git branches that the agent reads at the start of a run and updates at the end: memory/goals (one state file per goal), memory/darwin (taste genome, lineage, gene pool, phylogeny), memory/ci-casebook (past incidents and a playbook), and memory/research-kb (reports and an index). Because memory is plain files in git, a person can browse exactly what each agent knows.",
+      "Goal Seeker. A goal is an issue containing an objective, success criteria that each carry a runnable command, constraints, and an iteration budget (12 by default). If the criteria cannot objectively decide when the goal is done, the agent writes no code. It proposes a rewritten contract, labels the issue goal:needs-action, and waits for a person to edit it.",
+      "The first iteration plans 2–8 milestones, each a single reviewable change tied to the criteria it advances. Later runs measure a baseline by running every criterion, implement the current checkpoint with the smallest useful change, and re-run the criteria and existing tests. A run gets at most two attempts, and the second must take a materially different approach.",
+      "A change is accepted only if its own check passes and nothing that passed before now fails; it is then pushed to the goal's single goal/<n> PR. A rejected change is reset, recorded as a foreclosed avenue, and given a stable failure signature, and the same signature twice in a row trips the circuit breaker. A goal is complete only when every criterion passes in the current run with its output quoted. A person still reviews and merges the PR.",
+      "Repo Darwin. Each generation starts from how the maintainer judged earlier Darwin PRs: merged (survived), closed by a person (extinct), or left to expire (ignored, a weak negative). Comments and inline reviews become genes in a taste genome. Every gene must cite a PR number and, where one exists, a quote.",
+      "The pre-step samples each of nine mutation species (bugfix, reliability, tests, security, performance, simplify, docs, dx, feature) from Beta(1 + survived, 1 + extinct + 0.5 × ignored) and reports whether the choice is exploitation, exploration, or a cold start (fewer than three decided PRs). The agent runs the repository's code, ranks up to 15 candidates by value × confidence × taste fit ÷ (risk × size), and picks one from the chosen species.",
+      "A mutation is kept only if an executed survival test proves it: baseline output, the minimal change, then the same command re-run. A bug fix also needs a regression test that fails before the change and passes after it. Failed attempts are reverted and logged, with at most three per generation. The PR stays under about 300 lines and 10 files, never touches .github/, and ends with a Darwin-DNA line that the next generation parses.",
+      "CI Healer. The pre-step reduces a failed run to a failure key (workflow, job, step, and a hash of the error with SHAs, timestamps, paths, and numbers masked), a trimmed log, any open incident with the same key, and a flake signal that is set when the same commit also passed. The agent searches its casebook for the key and similar errors before diagnosing. Flaky or infrastructure failures get no code change.",
+      "In a scratch copy of the repository, each attempt reproduces the failing step's commands, or builds a minimal simulation and states how it differs. It ranks one to three root-cause hypotheses with evidence and applies the smallest patch for the strongest.",
+      "The reproduction must pass with the patch and still fail without it, checked with git stash. Each attempt appends a written reflection that the next attempt must read, so no patch or refuted hypothesis is repeated. The loop stops at a verified fix, after four attempts, on the same error twice, when the cause is outside the repository, or when the fix would be risky.",
+      "PR Tribunal. A deterministic step assembles the case file: PR metadata, the diff, and a checkout of the PR head so exhibits run against the real change. The prosecutor sub-agent may bring up to six charges. Each must include an exhibit (a command or test it actually ran) with its output, and any suspicion it cannot demonstrate is dropped.",
+      "The defender re-runs every exhibit and answers each charge. It can concede, rebut with evidence (a caller showing the input is impossible, a spec, or the base branch failing the same way), or argue that the claimed severity is too high. Its incentive is credibility, so contesting a proven charge costs it more than conceding.",
+      "The judge trusts neither side's transcript and re-runs every exhibit on the PR head, and on the base branch where practical. Each charge is ruled guilty, not guilty, pre-existing (never blocking), or hung (asked as a question). Up to five guilty findings become inline comments. The review requests changes only for a high-severity guilty charge, and it never approves.",
+      "Deep Research. The agent first checks its knowledge base for overlapping reports and reuses their verified findings. It then restates the question precisely, splits it into 3–6 sub-questions that each have a 'done when' condition, and names the sources that would be authoritative.",
+      "Scout sub-agents research each open sub-question, in parallel where possible. They return only atomic claims, each with a source URL, a quoted passage of at most 40 words, a publication date, and a source type.",
+      "The skeptic checks that each quote supports its claim, looks for independent corroboration (two copies of one press release do not count), and marks each claim corroborated, single-source, contested, or refuted. Sub-questions are scored high, medium, or low. Sharper follow-up queries go out for low-confidence or contested gaps, for at most three rounds.",
+      "Triage Council. Three juror sub-agents vote on each new issue without seeing one another's votes. The maintainer considers impact, area, and effort; the reporter considers user harm and report quality; the skeptic looks for duplicates, misfiling, and overstated severity. Each returns its votes for type, priority, needs-info, duplicate, and good first issue as JSON.",
+      "Fixed rules count the votes. A label needs at least two of three votes. P0 needs all three, and two P0 votes become P1. A duplicate needs two jurors naming the same issue plus a verified match, and good first issue needs all three. A 1-1-1 split applies triage:needs-human instead of guessing.",
+      "The issue gets the majority labels and one comment, written to the reporter first, that lists exactly what information is missing. Below that comes the full vote table and a confidence score: winning votes divided by votes cast.",
+      "Every workflow defines evals. A judge model answers YES/NO questions about each run, such as \"Is every finding backed by an executed exhibit?\", \"Was the failure reproduced before a fix was proposed?\", or \"Were labels applied only with a two-of-three majority?\"",
+      "Results arrive as ordinary GitHub activity for a person to review: a draft goal PR with a status comment, a Darwin PR, a CI fix PR or incident issue, a tribunal review, a cited research report, or triage labels with a vote record. Merges and closes on Darwin PRs become the next generation's reward signal.",
+      "The agent cannot write to GitHub directly. It emits safe outputs that gh-aw applies with caps, title prefixes, label and branch allowlists, and protected-file rules; a patch that touches .github/ becomes a review issue instead. When nothing is worth doing, the agent calls noop with a reason."
+    ],
+    "scenario_label": "Explore a workflow",
+    "scenario_default": "goal",
+    "scenario_note": "Each route follows one workflow through the shared harness; stages for the other workflows are dimmed. The walkthroughs illustrate the documented design. None of the agentic workflows has run yet.",
+    "tags": [
+      "GitHub Agentic Workflows",
+      "OpenAI Codex",
+      "Multi-agent",
+      "Reflexion",
+      "Thompson sampling",
+      "Python",
+      "LLM-as-judge"
+    ],
+    "study_sections": [
+      {
+        "label": "Six techniques, one per workflow",
+        "text": "Goal Seeker: goal contracts with a cross-run plan, act, verify, and ratchet loop. Repo Darwin: evolutionary search steered by a Thompson-sampling bandit and a learned taste genome. CI Healer: Reflexion retries backed by an episodic casebook. PR Tribunal: adversarial prosecutor and defender sub-agents with a judge who re-runs the evidence. Deep Research: plan-and-execute with parallel scouts, a skeptic, and iterative deepening. Triage Council: self-consistency through a three-juror ensemble vote."
+      },
+      {
+        "label": "How each loop stops",
+        "text": "Goal loop: every criterion passes with evidence, the budget runs out, the same failure signature repeats twice, or a person comments /goal pause. Reflexion loop: a verified fix, four attempts, the same error twice, or a cause outside the repository. Deepening loop: every sub-question reaches medium confidence or better, or three rounds pass. Evolution loop: it never ends, but it pauses while three Darwin PRs await a decision."
+      },
+      {
+        "label": "Architecture source",
+        "text": "Based on the public repository mahesh1112/Agentic-Workflows: the workflow sources in .github/workflows/*.md (compiled to *.lock.yml), shared/agent-principles.md, and the helpers goal-seeker/scheduler.py, darwin/natural_selection.py, and ci-healer/collect_failure.py."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "goal",
+        "label": "Goal Seeker / one goal iteration",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            3,
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            26
+          ],
+          [
+            25
+          ],
+          [
+            24
+          ]
+        ]
+      },
+      {
+        "id": "darwin",
+        "label": "Repo Darwin / one generation + feedback",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            3,
+            5
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            26
+          ],
+          [
+            25
+          ],
+          [
+            24
+          ],
+          [
+            9
+          ]
+        ]
+      },
+      {
+        "id": "ci",
+        "label": "CI Healer / failure to verified fix",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            3,
+            5
+          ],
+          [
+            12
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            13
+          ],
+          [
+            14
+          ],
+          [
+            26
+          ],
+          [
+            25
+          ],
+          [
+            24
+          ]
+        ]
+      },
+      {
+        "id": "tribunal",
+        "label": "PR Tribunal / trial of a pull request",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            15
+          ],
+          [
+            16
+          ],
+          [
+            17
+          ],
+          [
+            26
+          ],
+          [
+            25
+          ],
+          [
+            24
+          ]
+        ]
+      },
+      {
+        "id": "research",
+        "label": "Deep Research / question to cited report",
+        "groups": [
+          [
+            0
+          ],
+          [
+            4,
+            3,
+            5
+          ],
+          [
+            18
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            19
+          ],
+          [
+            20
+          ],
+          [
+            26
+          ],
+          [
+            25
+          ],
+          [
+            24
+          ]
+        ]
+      },
+      {
+        "id": "triage",
+        "label": "Triage Council / new issue to vote",
+        "groups": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            21
+          ],
+          [
+            22
+          ],
+          [
+            23
+          ],
+          [
+            26
+          ],
+          [
+            25
+          ],
+          [
+            24
+          ]
+        ]
+      }
+    ],
+    "output_node": 25
   }
 ]

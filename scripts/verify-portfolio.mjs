@@ -67,7 +67,7 @@ try {
     if (await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 53')) break;
     await delay(100);
   }
-  check(await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 118'), 'Nine published interactive diagrams / 118 explorable stages');
+  check(await evaluate('document.querySelectorAll(".diagram-node[role=button]").length === 139'), 'Nine published interactive diagrams / 139 explorable stages');
   check(await evaluate(`!document.querySelector('.project-card.workflow-draft, .workflow-pending') && [...document.querySelectorAll('.project-open')].every(button => button.textContent.startsWith('Explore workflow'))`), 'Every project publishes its workflow');
   check(await evaluate(`!document.querySelector('.project-repo-link, .project-card a[href*="github.com"]')`), 'Project cards carry no repository links');
   check(await evaluate(`[...document.querySelectorAll('.project-card')].map(card => card.id).join() === 'ai-engineering,bug-agent,learnwave-ai,deeppulse,nichrome,hireflow,face-recognition,finetuning,agentic-workflows'`), 'Projects are ordered by impact');
